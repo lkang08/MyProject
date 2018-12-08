@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_voice_room"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/myText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Begin"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Go"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myText" />
+
+    <FrameLayout
+        android:id="@+id/layout"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button">
+
+        <com.lk.myproject.widget.WaveView
+            android:id="@+id/zero_wave_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.lk.myproject.widget.CircleImageView
+            android:id="@+id/circle_image_view"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:src="@drawable/ico_tag_membership"
+            app:border_color="#f9af03"
+            app:border_width="1dp" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout">
+
+        <com.lk.myproject.widget.CircleImageView
+            android:id="@+id/circle_image_view2"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ico_tag_membership"
+            app:border_color="#f9af03"
+            app:border_width="1dp" />
+
+        <com.lk.myproject.widget.ShadowImageView
+            android:id="@+id/shadow_image_view"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:shadowColor="#33000000"
+            app:shadowRound="3dp"
+            app:shadowSrc="@drawable/ico_image" />
+
+        <com.lk.myproject.widget.ShadowImageView
+            android:id="@+id/shadow_image_view2"
+            android:layout_width="176dp"
+            android:layout_height="176dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:shadowRound="3dp"
+            app:shadowSrc="@drawable/ico_image" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

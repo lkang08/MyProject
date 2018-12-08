@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PermissionStyle" parent="Theme.AppCompat.Light.NoActionBar"> >
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <declare-styleable name="ShadowImageView">
+        <attr name="shadowRound" format="dimension" />
+        <attr name="shadowSrc" format="reference" />
+        <attr name="shadowColor" format="color" />
+    </declare-styleable>
+</resources>
