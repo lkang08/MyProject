@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyProject</string>
+    <string name="nor_progress_loading">努力加载中</string>
 </resources>

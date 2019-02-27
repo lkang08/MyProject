@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.ContactsContract.Data
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import com.lk.myproject.R
 import com.lk.permissionutils.PermissionListener
@@ -20,6 +21,10 @@ import java.util.*
 
 class PermissionTestActivity : BaseActivity() {
 
+    companion object {
+        var time: Long = 0
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -28,6 +33,9 @@ class PermissionTestActivity : BaseActivity() {
             requestCamera()
         }
 
+        Thread.sleep(time)
+        Log.d("lk###","time = $time")
+        time += 100
 
         btn_read_contact.setOnClickListener {
             requestReadContact()
