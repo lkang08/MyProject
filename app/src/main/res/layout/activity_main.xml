@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Begin"
+        android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
         android:textSize="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
