@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_voice_room"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/myText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.lk.myproject.widget.MyTextView
+        android:id="@+id/myText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myText" />
+
+    <com.lk.myproject.widget.MyTextView
+        android:id="@+id/myText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myText2" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Go"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myText3" />
+
+
+</android.support.constraint.ConstraintLayout>

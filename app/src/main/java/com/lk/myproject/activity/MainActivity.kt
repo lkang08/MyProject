@@ -5,10 +5,14 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.lk.myproject.R
 import com.lk.myproject.utils.StatusBarUtils
 import com.lk.myproject.widget.NorProgressView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,6 +55,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         progress!!.dismiss()
+        var time = System.currentTimeMillis()
+        var time2 = time + 1000 * 60 * 30
+        Log.d("lk###","time = $time , time2 = $time2")
     }
 
     private fun test() {
