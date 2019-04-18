@@ -2,7 +2,6 @@ package com.lk.myproject.activity
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.lk.myproject.R
 import com.lk.myproject.utils.NavigationBarUtils
@@ -17,6 +16,7 @@ class MainActivity2 : Activity() {
         button.setOnClickListener {
             Log.d("lk###", "getNavigationHeight = ${NavigationBarUtils.getNavigationHeight(this@MainActivity2)} " +
                 ",isNavigationBarExist = ${NavigationBarUtils.isNavigationBarExist(this@MainActivity2)}")
+            Log.d("lk###", "getVirtualBarHeight = ${Utils.getVirtualBarHeight(this@MainActivity2)}")
         }
     }
 }
