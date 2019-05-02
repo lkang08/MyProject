@@ -13,6 +13,9 @@ import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
+/**
+ * 第二个view置顶悬浮
+ */
 public class ScrollableLayout extends LinearLayout {
 
     private Scroller mScroller;

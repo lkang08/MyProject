@@ -7,92 +7,86 @@
     android:background="@drawable/bg_voice_room"
     tools:context=".activity.MainActivity">
 
-    <com.lk.myproject.widget.scrollablelayout.ScrollableLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#E70857"></View>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#F70404"></View>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/myText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:text="aaaaa"
+                android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/myText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
-                    android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
-                    android:textSize="20dp" />
+            <com.qintong.library.InsLoadingView
+                android:id="@+id/loading_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/pink" />
 
-                <com.lk.myproject.widget.MyTextView
-                    android:id="@+id/myText2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
-                    android:textSize="20dp" />
+            <com.qintong.library.InsLoadingView
+                android:id="@+id/gif"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/gif4" />
 
-                <com.lk.myproject.widget.MyTextView
-                    android:id="@+id/myText3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
-                    android:textSize="20dp" />
+            <ImageView
+                android:id="@+id/gif2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp" />
 
+            <ImageView
+                android:id="@+id/gif3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp" />
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    android:text="Go"
-                    android:textAllCaps="false"
-                    android:textSize="20dp" />
+            <com.felipecsl.gifimageview.library.GifImageView
+                android:id="@+id/gifImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/demo" />
 
-                <com.lk.myproject.widget.MyTextView
-                    android:id="@+id/myText4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
-                    android:textSize="20dp" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Load"
+                android:textAllCaps="false"
+                android:textSize="20dp" />
 
-                <com.lk.myproject.widget.MyTextView
-                    android:id="@+id/myText5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
-                    android:textSize="20dp" />
+            <Button
+                android:id="@+id/goBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Go"
+                android:textAllCaps="false"
+                android:textSize="20dp" />
 
-                <com.lk.myproject.widget.MyTextView
-                    android:id="@+id/myText6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
-                    android:textSize="20dp" />
-            </LinearLayout>
-        </ScrollView>
-    </com.lk.myproject.widget.scrollablelayout.ScrollableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
