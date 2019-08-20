@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="hong_pressed">#ffc0392b</color>
+    <color name="color_purple">#7F5DFF</color>
+    <color name="color_purple1">#724EF8</color>
+    <color name="white">#fff</color>
 </resources>

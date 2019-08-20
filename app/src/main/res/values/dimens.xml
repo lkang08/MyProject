@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="hotline_create_headheight">95dp</dimen>
+    <dimen name="hotline_create_head_marginleft">15dp</dimen>
+    <dimen name="hotline_create_head_marginright">15dp</dimen>
+    <dimen name="round_radius">4dp</dimen>
+</resources>

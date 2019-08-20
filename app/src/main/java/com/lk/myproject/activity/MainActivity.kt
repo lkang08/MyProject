@@ -1,6 +1,5 @@
 package com.lk.myproject.activity
 
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
@@ -10,9 +9,6 @@ import com.lk.myproject.R
 import com.lk.myproject.utils.StatusBarUtils
 import com.lk.myproject.widget.NorProgressView
 import kotlinx.android.synthetic.main.activity_main.*
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         StatusBarUtils.setNoStatusBar(this)
         setContentView(R.layout.activity_main)
         button.setOnClickListener {
-            test()
         }
         circle_image_view.setOnClickListener {
             isStart = !isStart
@@ -44,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         shadow_image_view.setOnClickListener {
             progress!!.show("Loading...")
             it.postDelayed({
-                test()
             }, 1000)
         }
         shadow_image_view2.setOnClickListener {
@@ -57,13 +51,7 @@ class MainActivity : AppCompatActivity() {
         progress!!.dismiss()
         var time = System.currentTimeMillis()
         var time2 = time + 1000 * 60 * 30
-        Log.d("lk###","time = $time , time2 = $time2")
-    }
-
-    private fun test() {
-        var test = "移动OA上线会议计划于2012年05月19日9点在102会议室准时召开，请各位准时参加会议!房间安静的身份辣椒粉杜蕾斯打附加赛科技大厦防雷接地萨拉会计分录快点撒解放路口的就是大家是否缴费的卢卡斯解放东路卡萨！"
-        myText.text = toSBC(test)
-        //startActivity(Intent(this, PermissionTestActivity::class.java))
+        Log.d("lk###", "time = $time , time2 = $time2")
     }
 
     /**

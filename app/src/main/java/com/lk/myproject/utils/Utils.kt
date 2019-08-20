@@ -2,6 +2,7 @@ package com.lk.myproject.utils
 
 import android.app.Activity
 import android.content.Context
+import android.provider.Settings
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.Window
@@ -97,5 +98,32 @@ object Utils {
             result = context.resources.getDimensionPixelSize(resourceId)
         }
         return result
+    }
+
+    fun getVirtualBarHeight(context: Context): Int {
+        var vh = 0
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val dm = DisplayMetrics()
+        try {
+            val c = Class.forName("android.view.Display")
+            val method = c.getMethod("getRealMetrics", DisplayMetrics::class.java)
+            method.invoke(display, dm)
+            vh = dm.heightPixels - display.height
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return vh
+    }
+
+    /**
+     * 是否全面屏手势
+     *
+     * @param context
+     * @return
+     */
+    fun isGlobalGesture(context: Context): Boolean {
+        return Settings.Global.getInt(context.contentResolver, "force_fsg_nav_bar", 0) != 0
     }
 }

@@ -1,11 +1,14 @@
 package com.lk.myproject.activity
 
 import android.app.Activity
+import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +16,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.target.CustomViewTarget
+import com.bumptech.glide.request.transition.Transition
 import com.lk.myproject.R
 import com.qintong.library.InsLoadingView
 import kotlinx.android.synthetic.main.activity_gif.*
@@ -40,6 +46,7 @@ class GifActivity : Activity() {
                 2 -> loading_view.status = InsLoadingView.Status.LOADING
             }
             index++
+            startActivity(Intent(this@GifActivity, CreationActivity::class.java))
         }
     }
 
@@ -77,11 +84,29 @@ class GifActivity : Activity() {
     private fun loadGif() {
         Glide.with(this).load(R.drawable.pink).into(loading_view)
         Glide.with(this).load(R.drawable.gif_emoji_3).into(gif)
-        Glide.with(this).load(Uri.parse("http://img.soogif.com/5D4bWERvgwvi95peLnA1pIzplnjObBQK.gif")).diskCacheStrategy(DiskCacheStrategy.NONE)
-                .placeholder(R.drawable.gif4).circleCrop().into(gif2)
+        Glide.with(this).load(Uri.parse("https://img.inbilin.com/43515181/43515181_1557027690843.jpg-small"))
+            .diskCacheStrategy(DiskCacheStrategy.NONE)//http://img.soogif.com/5D4bWERvgwvi95peLnA1pIzplnjObBQK.gif
+            .placeholder(R.drawable.gif4).circleCrop().into(object : CustomViewTarget<ImageView, Drawable>(gif2) {
+                override fun onLoadFailed(errorDrawable: Drawable?) {
+                    Log.d("lk###", "onLoadFailed $errorDrawable")
+                }
+
+                override fun onResourceCleared(placeholder: Drawable?) {
+                    Log.d("lk###", "onResourceCleared $placeholder")
+                }
+
+                override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                    Log.d("lk###", "onResourceReady $resource")
+                    gif2.setImageDrawable(resource)
+                    if (resource is GifDrawable) {
+
+                        //resource.start()
+                    }
+                }
+            })
         Glide.with(this).load(Uri.parse("http://img.soogif.com/ADVfaaMIVqmbC2aMAHLQk5aXChNZboC2.gif"))
-                .override(100).diskCacheStrategy(DiskCacheStrategy.NONE)
-                .placeholder(R.drawable.gif0).circleCrop().into(gifImageView)
+            .override(100).diskCacheStrategy(DiskCacheStrategy.NONE)
+            .placeholder(R.drawable.gif0).circleCrop().into(gifImageView)
         Glide.with(this).load(R.drawable.demo).circleCrop().into(iv_gif)
     }
 
@@ -116,6 +141,5 @@ class GifActivity : Activity() {
                 }
             }
         }
-
     }
 }

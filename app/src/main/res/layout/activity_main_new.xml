@@ -51,20 +51,55 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp" />
 
-            <ImageView
-                android:id="@+id/gif3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp" />
-
-            <com.felipecsl.gifimageview.library.GifImageView
-                android:id="@+id/gifImageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            <io.supercharge.shimmerlayout.ShimmerLayout
+                android:id="@+id/shimmer_view0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/demo" />
+                app:shimmer_animation_duration="800">
+
+                <ImageView
+                    android:id="@+id/gif3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal" />
+            </io.supercharge.shimmerlayout.ShimmerLayout>
+
+            <io.supercharge.shimmerlayout.ShimmerLayout
+                android:id="@+id/shimmer_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:shimmer_animation_duration="1200">
+
+                <com.felipecsl.gifimageview.library.GifImageView
+                    android:id="@+id/gifImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/demo" />
+            </io.supercharge.shimmerlayout.ShimmerLayout>
+
+            <io.supercharge.shimmerlayout.ShimmerLayout
+                android:id="@+id/shimmer_text"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                app:shimmer_animation_duration="1200"
+                app:shimmer_auto_start="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="ShimmerLayout"
+                    android:textSize="26sp"/>
+            </io.supercharge.shimmerlayout.ShimmerLayout>
 
             <Button
                 android:id="@+id/button"

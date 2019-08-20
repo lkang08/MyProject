@@ -34,6 +34,8 @@ dependencies {
     implementation 'com.qintong:insLoadingAnimation:1.0.1'
     implementation 'com.felipecsl:gifimageview:2.2.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+    compile 'com.brucetoo.pickview:library:1.2.3'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
 }
 repositories {
     mavenCentral()
