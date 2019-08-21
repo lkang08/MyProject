@@ -41,6 +41,7 @@
         <activity android:name=".activity.CreationActivity" />
         <activity android:name=".activity.NotificationActivity" />
         <activity android:name=".activity.ToastActivity" />
+        <activity android:name=".activity.SeekBarActivity" />
     </application>
 
 </manifest>

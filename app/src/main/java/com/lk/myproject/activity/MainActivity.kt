@@ -1,5 +1,6 @@
 package com.lk.myproject.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
@@ -10,7 +11,7 @@ import com.lk.myproject.utils.StatusBarUtils
 import com.lk.myproject.widget.NorProgressView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private var isStart: Boolean = false
     private var progress: NorProgressView? = null
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         StatusBarUtils.setNoStatusBar(this)
         setContentView(R.layout.activity_main)
         button.setOnClickListener {
+            startActivity(Intent(this@MainActivity, SeekBarActivity::class.java))
         }
         circle_image_view.setOnClickListener {
             isStart = !isStart

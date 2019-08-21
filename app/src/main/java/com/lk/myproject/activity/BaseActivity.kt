@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 
 abstract class BaseActivity : AppCompatActivity() {
+    var test: String = "BaseActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("lk###","BaseActivity onCreate")
+        Log.d("lk###", "BaseActivity onCreate")
+        test = "BaseActivity change"
     }
 }
