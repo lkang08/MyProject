@@ -7,4 +7,8 @@
     <color name="color_purple">#7F5DFF</color>
     <color name="color_purple1">#724EF8</color>
     <color name="white">#fff</color>
+    <color name="color1">#28FFFFFF</color>
+    <color name="color2">#3CFFFFFF</color>
+    <color name="color3">#28dbff</color>
+    <color name="color4">#71dbff</color>
 </resources>

@@ -9,7 +9,10 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -105,6 +108,9 @@ public class WaveProgressView extends View {
         mViewPaint = new Paint();
         mViewPaint.setAntiAlias(true);
         // mViewPaint.setColor(Color.WHITE);
+        mViewPaint.setStyle(Paint.Style.FILL);//设置填充样式
+        mViewPaint.setDither(true);//设定是否使用图像抖动处理，会使绘制出来的图片颜色更加平滑和饱满，图像更加清晰
+        mViewPaint.setFilterBitmap(true);//加快显示速度，本设置项依赖于dither和xfermode的设置
 
         mTextPaint = new Paint();
         mTextPaint.setAntiAlias(true);
@@ -240,6 +246,8 @@ public class WaveProgressView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        totalW=w;
+        totalH=h;
         if (getWidth() > 0 && getHeight() > 0) {
             try {
                 createShader();
@@ -292,6 +300,17 @@ public class WaveProgressView extends View {
         mViewPaint.setShader(mWaveShader);
     }
 
+    Bitmap photo;
+    private void initialize() {
+        mScreenWidth = getWidth();
+        mScreenHeight = getHeight();
+
+        Bitmap bmp = ((BitmapDrawable) getResources().getDrawable(R.drawable.icon_heart)).getBitmap();
+        photo = Bitmap.createScaledBitmap(bmp, mScreenWidth, mScreenHeight, true);
+    }
+
+        private int totalW,totalH,mScreenWidth,mScreenHeight;
+
     @Override
     protected void onDraw(Canvas canvas) {
         // modify paint shader according to mShowWave state
@@ -328,6 +347,15 @@ public class WaveProgressView extends View {
                     canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, radius, mViewPaint);
                     break;
                 case SQUARE:
+                    if(photo == null){
+                        initialize();
+                    }
+                    canvas.drawBitmap(photo, 0, 0, null);
+                    int sc=canvas.saveLayer(0,0,totalW,totalH,mViewPaint,Canvas.ALL_SAVE_FLAG);
+                    canvas.drawBitmap(photo, 0, 0, null);
+
+                    mViewPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+                    mViewPaint.setShader(mWaveShader);
                     if (borderWidth > 0) {
                         canvas.drawRect(
                                 borderWidth / 2f,
@@ -338,6 +366,9 @@ public class WaveProgressView extends View {
                     }
                     canvas.drawRect(borderWidth, borderWidth, getWidth() - borderWidth,
                             getHeight() - borderWidth, mViewPaint);
+                    mViewPaint.setXfermode(null);
+                    canvas.restoreToCount(sc);
+
                     break;
                 case HEART:
                     int width = getWidth(); //获取屏幕宽
@@ -363,13 +394,13 @@ public class WaveProgressView extends View {
             mViewPaint.setShader(null);
         }
 
-        float textWidth = mTextPaint.measureText(currProgressText);
+        /*float textWidth = mTextPaint.measureText(currProgressText);
         float textHeight = mTextPaint.ascent() + mTextPaint.descent();
         float textX = getWidth() / 2;
         float textY = getHeight() / 2;
         textX = textX - textWidth / 2;
         textY = textY - textHeight / 2;
-        canvas.drawText(currProgressText, textX, textY, mTextPaint);
+        canvas.drawText(currProgressText, textX, textY, mTextPaint);*/
     }
 
     public int sp2px(Context context, float spValue) {

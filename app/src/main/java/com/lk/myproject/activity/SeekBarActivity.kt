@@ -48,7 +48,7 @@ class SeekBarActivity : Activity() {
 
     private fun init() {
         waveProgress.setShapeType(WaveProgressView.ShapeType.SQUARE)
-        waveProgress.setWaveColor(Color.parseColor("#28dbff"), Color.parseColor("#71dbff"))
+        waveProgress.setWaveColor(Color.parseColor("#FF7EC7"), Color.parseColor("#FF6E7F"))
         var mWaveHelper = WaveHelper(waveProgress)
         mWaveHelper.start()
     }
