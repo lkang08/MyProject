@@ -44,7 +44,7 @@ class SeekBarActivity : Activity() {
         init()
     }
 
-    var index = 0
+    var index = 1
 
     private fun init() {
         waveProgress.setShapeType(WaveProgressView.ShapeType.SQUARE)
