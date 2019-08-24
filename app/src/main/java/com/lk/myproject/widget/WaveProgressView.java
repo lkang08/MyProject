@@ -350,11 +350,11 @@ public class WaveProgressView extends View {
                     if(photo == null){
                         initialize();
                     }
-                    canvas.drawBitmap(photo, 0, 0, null);
+                    //canvas.drawBitmap(photo, 0, 0, null);
                     int sc=canvas.saveLayer(0,0,totalW,totalH,mViewPaint,Canvas.ALL_SAVE_FLAG);
                     canvas.drawBitmap(photo, 0, 0, null);
 
-                    mViewPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+                    mViewPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
                     mViewPaint.setShader(mWaveShader);
                     if (borderWidth > 0) {
                         canvas.drawRect(
