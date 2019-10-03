@@ -32,4 +32,9 @@
         <attr name="cornerSize" format="dimension"></attr>
     </declare-styleable>
 
+    <style name="AppCompact.Theme.Transparent.FullScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>
