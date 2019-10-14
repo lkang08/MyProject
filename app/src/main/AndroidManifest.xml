@@ -88,11 +88,6 @@
 
         </activity>
         <activity android:name=".activity.PermissionActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activity.PermissionRequestActivity"
@@ -100,6 +95,13 @@
             android:theme="@style/AppCompact.Theme.Transparent.FullScreen">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.RecyclerViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
