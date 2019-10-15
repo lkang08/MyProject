@@ -8,7 +8,13 @@ import android.view.View
 import com.lk.myproject.Bean.VideoHeartGuardItem
 import com.lk.myproject.R
 import com.lk.myproject.adapter.HeartGuardAdapter
+import com.lk.myproject.ext.log
+import com.lk.myproject.ext.safe
 import kotlinx.android.synthetic.main.activity_recyclerview.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
 
 class RecyclerViewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,9 +23,11 @@ class RecyclerViewActivity : BaseActivity() {
         initData()
         initView()
         sureBtn.setOnClickListener {
+            "click".log()
             initData()
             adapter.list = list
             adapter.notifyDataSetChanged()
+            testWeakRef()
         }
     }
 
@@ -60,6 +68,23 @@ class RecyclerViewActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    private fun showTest(i: Int) {
+        "end showTest $i".log()
+    }
+
+    private fun testWeakRef() {
+        var ref = WeakReference(this)
+        GlobalScope.launch {
+            var count = 10
+            repeat(count) {
+                "repeat $it".log()
+                delay(1000)
+            }
+            "repeat end ..."
+            ref.safe { showTest(count) }
+        }
     }
 }
 
