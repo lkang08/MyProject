@@ -7,8 +7,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import com.lk.myproject.MyApplication;
 import com.lk.myproject.R;
-import com.lk.myproject.activity.App;
 
 import static android.app.Notification.VISIBILITY_SECRET;
 import static android.content.Context.NOTIFICATION_SERVICE;
@@ -17,7 +17,8 @@ public class NotificationUtils {
     private static NotificationManager manager;
     private static NotificationManager getManager() {
         if (manager == null) {
-            manager = (NotificationManager) App.getInstance().getSystemService(NOTIFICATION_SERVICE);
+            manager =
+                    (NotificationManager) MyApplication.app.getSystemService(NOTIFICATION_SERVICE);
         }
         return manager;
     }
@@ -26,7 +27,7 @@ public class NotificationUtils {
         //大于8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //id随便指定
-            NotificationChannel channel = new NotificationChannel(channelId, App.getInstance().getPackageName(), NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel(channelId, MyApplication.app.getPackageName(), NotificationManager.IMPORTANCE_DEFAULT);
             channel.canBypassDnd();//可否绕过，请勿打扰模式
             channel.enableLights(true);//闪光
             channel.setLockscreenVisibility(VISIBILITY_SECRET);//锁屏显示通知
@@ -43,7 +44,7 @@ public class NotificationUtils {
             getManager().createNotificationChannel(channel);
 
         }
-        return new Notification.Builder(App.getInstance()).setAutoCancel(true).setChannelId(channelId)
+        return new Notification.Builder(MyApplication.app).setAutoCancel(true).setChannelId(channelId)
                 .setContentTitle(title)
                 .setContentText(content).setSmallIcon(R.mipmap.ic_launcher);
     }
