@@ -87,8 +87,7 @@
         <activity android:name=".activity.SeekBarActivity">
 
         </activity>
-        <activity android:name=".activity.PermissionActivity">
-        </activity>
+        <activity android:name=".activity.PermissionActivity"></activity>
         <activity
             android:name=".activity.PermissionRequestActivity"
             android:launchMode="singleInstance"
@@ -97,7 +96,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RecyclerViewActivity">
+        <activity android:name=".activity.RecyclerViewActivity"></activity>
+        <activity android:name=".activity.OverDrawActivity"
+            android:theme="@style/AppTheme1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

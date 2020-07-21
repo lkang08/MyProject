@@ -37,6 +37,10 @@ dependencies {
     compile 'com.brucetoo.pickview:library:1.2.3'
     implementation 'io.supercharge:shimmerlayout:2.1.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0-M2'
+    //json
+    api 'com.alibaba:fastjson:1.1.70.android'
+    api 'com.ms-square:expandableTextView:0.1.4'
+    api 'cn.carbs.android:ExpandableTextView:1.0.3'
 }
 repositories {
     mavenCentral()

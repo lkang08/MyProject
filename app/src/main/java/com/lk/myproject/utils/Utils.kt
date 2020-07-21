@@ -7,7 +7,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-
+import com.lk.myproject.ext.dp2px
 
 object Utils {
 
@@ -47,6 +47,16 @@ object Utils {
         return activity.window.findViewById<View>(Window.ID_ANDROID_CONTENT).top
     }
 
+    @JvmStatic
+    fun dp2px(dp: Int): Int {
+        return dp.dp2px
+    }
+
+    @JvmStatic
+    fun isEmpty(src: String?): Boolean {
+        return src.isNullOrEmpty()
+    }
+
     /**
      * 获得屏幕高度
      *
@@ -55,7 +65,7 @@ object Utils {
      */
     fun getScreenHeight(context: Context): Int {
         val wm = context
-                .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            .getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val outMetrics = DisplayMetrics()
         wm.defaultDisplay.getMetrics(outMetrics)
         return outMetrics.heightPixels
@@ -63,7 +73,7 @@ object Utils {
 
     fun getScreenWidth(context: Context): Int {
         val wm = context
-                .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            .getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val outMetrics = DisplayMetrics()
         wm.defaultDisplay.getMetrics(outMetrics)
         return outMetrics.widthPixels
@@ -76,7 +86,7 @@ object Utils {
             val clazz = Class.forName("com.android.internal.R\$dimen")
             val `object` = clazz.newInstance()
             val height = Integer.parseInt(clazz.getField("status_bar_height")
-                    .get(`object`).toString())
+                .get(`object`).toString())
             statusHeight = context.resources.getDimensionPixelSize(height)
         } catch (e: Exception) {
             e.printStackTrace()

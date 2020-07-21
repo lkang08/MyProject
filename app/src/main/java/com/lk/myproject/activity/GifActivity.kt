@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
+import com.lk.myproject.MyApplication
 import com.lk.myproject.R
 import com.qintong.library.InsLoadingView
 import kotlinx.android.synthetic.main.activity_gif.*
@@ -30,6 +31,7 @@ class GifActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gif)
+        MyApplication.l("GifActivity onCreate")
         loadGif()
         init()
         button.setOnClickListener {
@@ -48,6 +50,7 @@ class GifActivity : Activity() {
             index++
             startActivity(Intent(this@GifActivity, CreationActivity::class.java))
         }
+        MyApplication.l("GifActivity onCreate 1")
     }
 
     var index: Int = 0
