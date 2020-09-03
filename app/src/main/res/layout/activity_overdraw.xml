@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_base_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
+    android:orientation="vertical"
+    android:background="@color/white">
 
 
     <TextView
         android:id="@+id/test"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:gravity="center"
         android:text="Hello World"
         android:textColor="@color/colorAccent"
         android:textSize="25sp">
 
     </TextView>
 
+    <TextView
+        android:id="@+id/tvSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="网速："
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="30sp" />
 
 </LinearLayout>

@@ -4,4 +4,6 @@
     <dimen name="hotline_create_head_marginleft">15dp</dimen>
     <dimen name="hotline_create_head_marginright">15dp</dimen>
     <dimen name="round_radius">4dp</dimen>
+    <dimen name="room_animator_gift_size">66dp</dimen>
+    <dimen name="px5dp">5dp</dimen>
 </resources>

@@ -4,11 +4,127 @@
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
+    android:background="@color/white">
 
-    <include layout="@layout/activity_overdraw" />
+    <!--<include layout="@layout/activity_overdraw" />-->
 
-    <FrameLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="Hello World"
+            android:textColor="@color/colorAccent"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/imageView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/default_head"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/test"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/tvSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="网速："
+            android:textSize="30sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mic1"
+            android:drawableTop="@drawable/default_head"
+            android:textColor="@color/color_purple"
+            android:textSize="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="130dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/send2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mic2"
+            android:drawableTop="@drawable/default_head"
+            android:textColor="@color/color_purple"
+            android:textSize="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="130dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/receive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="非Mic"
+            android:textColor="@color/color_purple"
+            android:drawableTop="@drawable/default_head"
+            android:textSize="20dp"
+            android:layout_marginRight="40dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/gift_view_holder"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" />
+
+        <View
+            android:id="@+id/v_1"
+            android:layout_height="@dimen/px5dp"
+            android:layout_width="@dimen/px5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/v_2"
+            android:layout_height="@dimen/px5dp"
+            android:layout_width="@dimen/px5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <View
+            android:id="@+id/xin"
+            android:layout_height="@dimen/px5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="@dimen/px5dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
         android:layout_width="180dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -17,7 +133,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="hello world" />
-    </FrameLayout>
+            android:layout_marginTop="30dp"
+            android:text="hello world"
+            android:textSize="30dp" />
+
+    </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>
