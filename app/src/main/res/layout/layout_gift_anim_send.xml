@@ -20,7 +20,7 @@
         android:textColor="#362e2b"
         android:textSize="8sp"
         android:paddingBottom="1dp"
-        tools:text="轻语小伙伴"
+        tools:text="ME小伙伴"
         android:visibility="gone"
         tools:visibility="visible" />
 </LinearLayout>
