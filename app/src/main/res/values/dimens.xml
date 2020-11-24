@@ -6,4 +6,6 @@
     <dimen name="round_radius">4dp</dimen>
     <dimen name="room_animator_gift_size">66dp</dimen>
     <dimen name="px5dp">5dp</dimen>
+    <dimen name="dp16">16</dimen>
+    <dimen name="dp4">4</dimen>
 </resources>

@@ -80,8 +80,16 @@
         <activity android:name=".activity.MainActivity2">
 
         </activity>
-        <activity android:name=".activity.GifActivity" />
-        <activity android:name=".activity.CreationActivity" />
+        <activity android:name=".activity.GifActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.CreationActivity">
+
+        </activity>
         <activity android:name=".activity.NotificationActivity" />
         <activity android:name=".activity.ToastActivity" />
         <activity android:name=".activity.SeekBarActivity">
@@ -96,15 +104,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RecyclerViewActivity"></activity>
+        <activity android:name=".activity.RecyclerViewActivity">
 
-        <activity android:name=".activity.OverDrawActivity"
+        </activity>
+
+        <activity
+            android:name=".activity.OverDrawActivity"
             android:theme="@style/AppTheme1">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>

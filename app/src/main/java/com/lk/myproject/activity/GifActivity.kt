@@ -2,17 +2,21 @@ package com.lk.myproject.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
+import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -21,6 +25,8 @@ import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.lk.myproject.MyApplication
 import com.lk.myproject.R
+import com.lk.myproject.ext.dp2px
+import com.lk.myproject.widget.RadiusBackgroundSpan
 import com.qintong.library.InsLoadingView
 import kotlinx.android.synthetic.main.activity_gif.*
 import kotlinx.android.synthetic.main.activity_gif_item.view.*
@@ -34,6 +40,34 @@ class GifActivity : Activity() {
         MyApplication.l("GifActivity onCreate")
         loadGif()
         init()
+        tvTest.setOnClickListener {
+            val ssb = SpannableStringBuilder().append("有一位")
+            "沙雕".takeIf { it.isNotBlank() }?.let {
+                ssb.append(" ")
+                var begin = ssb.length
+                ssb.append("$it")
+                var end = ssb.length
+                ssb.append(" ")
+                ssb.setSpan(RadiusBackgroundSpan(Color.parseColor("#E1DEF6"),
+                    Color.parseColor("#5F54FF"), 16.dp2px / 2), begin, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+
+            "恋爱高手".takeIf { it.isNotBlank() }?.let {
+                ssb.append(" ")
+                var begin = ssb.length
+                ssb.append("$it")
+                var end = ssb.length
+                ssb.append(" ")
+                ssb.setSpan(RadiusBackgroundSpan(Color.parseColor("#E1DEF6"),
+                    Color.parseColor("#5F54FF"), 16.dp2px / 2), begin, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+            if (ssb.length > 4) {
+                ssb.append("的")
+            }
+            ssb.append("男生在线等撩，跟男打个招呼吧～")
+
+            tvTest.text = ssb
+        }
         button.setOnClickListener {
             var adapter = MyAdapter(this)
             adapter.dataList = dataList
@@ -55,7 +89,36 @@ class GifActivity : Activity() {
 
     var index: Int = 0
 
+    private fun initTest() {
+        testLinear.let {
+            var list = mutableListOf<String>()
+            list.add("http://bilinimg.bs2dl.yy.com/20200827202957963_bs2_format.png")
+            list.add("http://bilinimg.bs2dl.yy.com/20200827202957963_bs2_format.png")
+            list.add("http://bilinimg.bs2dl.yy.com/20200827202957963_bs2_format.png")
+            setActTags(it, list)
+        }
+    }
+
+    private fun setActTags(layout: LinearLayout, list: List<String>) {
+        layout.removeAllViews()
+        if (list.isNullOrEmpty()) {
+            layout.visibility = View.GONE
+            return
+        }
+        layout.visibility = View.VISIBLE
+        val height = layout.context.resources.getDimensionPixelSize(R.dimen.hotline_create_head_marginleft)
+        for (i in list.indices) {
+            val imageView = ImageView(layout.context)
+            val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, height)
+            params.leftMargin = layout.context.resources.getDimensionPixelSize(R.dimen.round_radius)
+            imageView.layoutParams = params
+            Glide.with(this).load(list[i]).into(imageView)
+            layout.addView(imageView)
+        }
+    }
+
     private fun init() {
+        initTest()
         initIconList()
         for (i in 0..40) {
             dataList.add(Item(name = "icon $i", icon = iconList[i % iconList.size], description = "description ${iconList[i % iconList.size]}"))
@@ -110,6 +173,19 @@ class GifActivity : Activity() {
         Glide.with(this).load(Uri.parse("http://img.soogif.com/ADVfaaMIVqmbC2aMAHLQk5aXChNZboC2.gif"))
             .override(100).diskCacheStrategy(DiskCacheStrategy.NONE)
             .placeholder(R.drawable.gif0).circleCrop().into(gifImageView)
+        var outLocation: IntArray = IntArray(2)
+        gifImageView.setOnClickListener {
+            it.alpha = 0f
+            it.getLocationInWindow(outLocation)
+            it.x = ((-150).dp2px).toFloat()
+            it.y = 0f
+            it.animate().apply {
+                x(outLocation[0].toFloat())
+                y(outLocation[1].toFloat())
+                alpha(1f)
+                duration = 1000
+            }
+        }
         Glide.with(this).load(R.drawable.demo).circleCrop().into(iv_gif)
     }
 

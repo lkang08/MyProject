@@ -7,6 +7,18 @@
     tools:context=".activity.MainActivity">
 
 
+    <TextView
+        android:id="@+id/tvTest"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="250dp"
+        android:textSize="13sp"
+        android:textColor="#666666"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="有一位沙雕的男生在线等撩，有一位沙雕的男生在线等撩"
+        android:layout_height="wrap_content" />
+
     <com.qintong.library.InsLoadingView
         android:id="@+id/loading_view"
         android:layout_width="100dp"
@@ -15,7 +27,7 @@
         android:src="@drawable/pink"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTest" />
 
     <com.qintong.library.InsLoadingView
         android:id="@+id/gif"
@@ -86,6 +98,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/testLinear"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/changBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"

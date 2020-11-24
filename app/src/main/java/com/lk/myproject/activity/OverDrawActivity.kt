@@ -49,10 +49,29 @@ class OverDrawActivity : BaseActivity() {
                 gift_view_holder, this, content)
         }
         receive?.setOnClickListener {
+            separate("ab", "abcdefghijklmnopq好发挥到了饭卡水淀粉领导开发商的反馈。。。dfa。……&&^ ^") {
+                Log.d("SendGiftAnimationView", it)
+            }
             helper.showSingleGiftAnimation(v_1, send,
                 190001, "http://s1.yy.com/guild/xh/p_icon/static/190001.png",
                 gift_view_holder, this, content)
         }
         NetWorkSpeedUtils(this, handler).startShowNetSpeed()
+    }
+
+    val maxLength = 4
+
+    fun separate(tag: String, msg: String, action: (msg: String) -> Any) {
+        var tempMsg = msg
+        var total = msg.length / maxLength
+        if (msg.length % maxLength != 0) {
+            total += 1
+        }
+        var step = 1
+        while (tempMsg.length > maxLength) {
+            action.invoke("(${step++}/$total) ${tempMsg.substring(0, maxLength)}")
+            tempMsg = tempMsg.substring(maxLength)
+        }
+        action.invoke("(${step++}/$total) $tempMsg")
     }
 }
