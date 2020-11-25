@@ -8,4 +8,5 @@
     <dimen name="px5dp">5dp</dimen>
     <dimen name="dp16">16</dimen>
     <dimen name="dp4">4</dimen>
+    <dimen name="dp10">10sp</dimen>
 </resources>

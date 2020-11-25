@@ -42,14 +42,17 @@ class GifActivity : Activity() {
         init()
         tvTest.setOnClickListener {
             val ssb = SpannableStringBuilder().append("有一位")
-            "沙雕".takeIf { it.isNotBlank() }?.let {
+            var textSize = this.resources.getDimensionPixelSize(R.dimen.dp10)
+            var padding = 2.dp2px
+            "沙雕沙雕".takeIf { it.isNotBlank() }?.let {
                 ssb.append(" ")
                 var begin = ssb.length
                 ssb.append("$it")
                 var end = ssb.length
                 ssb.append(" ")
-                ssb.setSpan(RadiusBackgroundSpan(Color.parseColor("#E1DEF6"),
-                    Color.parseColor("#5F54FF"), 16.dp2px / 2), begin, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                ssb.setSpan(RadiusBackgroundSpan(Color.parseColor("#1A7862FF"),
+                    Color.parseColor("#5F54FF"), 16.dp2px / 2, textSize, padding),
+                    begin, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
 
             "恋爱高手".takeIf { it.isNotBlank() }?.let {
@@ -58,8 +61,9 @@ class GifActivity : Activity() {
                 ssb.append("$it")
                 var end = ssb.length
                 ssb.append(" ")
-                ssb.setSpan(RadiusBackgroundSpan(Color.parseColor("#E1DEF6"),
-                    Color.parseColor("#5F54FF"), 16.dp2px / 2), begin, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                ssb.setSpan(RadiusBackgroundSpan(Color.parseColor("#1A7862FF"),
+                    Color.parseColor("#5F54FF"), 16.dp2px / 2, textSize, padding),
+                    begin, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
             if (ssb.length > 4) {
                 ssb.append("的")
