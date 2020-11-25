@@ -14,4 +14,12 @@
     <color name="transparent">#00000000</color>
     <color name="color7">#E1DEF6</color>
     <color name="color8">#5F54FF</color>
+
+    <color name="text_color">#FFFFFF</color>
+    <color name="divider_color">#11000000</color>
+    <color name="msg_color">#FFFFFFFF</color>
+    <color name="dialog_bg">#ffe74c3c</color>
+
+    <color name="btn_press_color">#66000000</color>
+    <color name="btn_unpress_color">#22000000</color>
 </resources>
