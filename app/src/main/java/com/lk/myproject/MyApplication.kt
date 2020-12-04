@@ -1,11 +1,11 @@
 package com.lk.myproject
 
-import android.app.Application
 import android.content.Context
 import android.os.SystemClock
 import android.util.Log
+import com.uuch.adlibrary.LApplication
 
-class MyApplication : Application() {
+class MyApplication : LApplication() {
     companion object {
         lateinit var app: MyApplication
         var begin: Long = 0L

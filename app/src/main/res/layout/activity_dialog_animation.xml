@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/lyParent"
     android:background="#e74c3c"
     android:orientation="vertical">
 
@@ -27,6 +28,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp">
+
+            <RelativeLayout
+                android:id="@+id/rlLayout"
+                android:background="@color/white"
+                android:layout_width="300dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="200dp"></RelativeLayout>
+            <Button
+                android:id="@+id/newAnim"
+                style="@style/my_btn"
+                android:text="New Anim"
+                />
 
             <Button
                 android:id="@+id/fadein"
