@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -21,7 +22,8 @@ import java.util.Calendar
 
 //type = 0 充值 1消费
 class DateDialog(
-    context: Context?, themeResId: Int, var type: Int = 0
+    context: Context?, themeResId: Int, var type: Int = 0,
+    var originFromData: String = "", var originToData: String = ""
 ) : Dialog
 (context,
     themeResId) {
@@ -67,35 +69,42 @@ class DateDialog(
                 Toast.makeText(context, "请选择正确的时间范围~", Toast.LENGTH_LONG)
                 return@setOnClickListener
             }
+            action.invoke(rbFrom.text.toString(), rbTo.text.toString())
             dismiss()
         }
         tvCancel.setOnClickListener {
             dismiss()
         }
         timeGroup.setOnCheckedChangeListener { group, checkedId ->
+            resetDataPickVisible(checkedId == R.id.rbFrom)
             if (checkedId == R.id.rbFrom) {
                 if (rbTo.text != "结束日期") {
                     calendar.set(toDate.year, toDate.month, toDate.day, 23, 59, 59)
-                    resetDate(minDate, calendar.timeInMillis)
+                    resetDate(fromDatePicker, minDate, calendar.timeInMillis)
                 } else {
-                    resetDate(minDate, maxDate)
+                    resetDate(fromDatePicker, minDate, maxDate)
                 }
             } else {
                 if (rbFrom.text != "开始日期") {
                     calendar.set(fromDate.year, fromDate.month, fromDate.day, 0, 0, 0)
-                    resetDate(calendar.timeInMillis, maxDate)
+                    resetDate(toDatePicker, calendar.timeInMillis, maxDate)
                 } else {
-                    resetDate(minDate, maxDate)
+                    resetDate(toDatePicker, minDate, maxDate)
                 }
             }
         }
         initDate()
     }
 
-    private fun resetDate(begin: Long, end: Long) {
+    private fun resetDataPickVisible(isFrom: Boolean) {
+        fromDatePicker.visibility = if (isFrom) View.VISIBLE else View.GONE
+        toDatePicker.visibility = if (!isFrom) View.VISIBLE else View.GONE
+    }
+
+    private fun resetDate(datePicker: DatePicker, begin: Long, end: Long) {
         try {
-            datePicker.maxDate = System.currentTimeMillis()
-            datePicker.minDate = if (begin >= datePicker.maxDate) datePicker.maxDate - 1000 else begin
+            //datePicker.maxDate = System.currentTimeMillis()
+            datePicker.minDate = begin
             datePicker.maxDate = end
         } catch (e: java.lang.Exception) {
             Log.d(TAG, "########## ${e.message}")
@@ -103,43 +112,85 @@ class DateDialog(
     }
 
     private fun initDate() {
-        var listener = DatePicker.OnDateChangedListener { view, y, m, d ->
-            var showMonth = if (m < 9) "0${m + 1}" else "${m + 1}"
-            var showDay = if (d < 10) "0$d" else "$d"
-            if (rbFrom.isChecked) {
-                rbFrom.text = "$y-$showMonth-$showDay"
-                fromDate.apply {
-                    year = y
-                    month = m
-                    day = d
-                }
-            } else {
-                rbTo.text = "$y-$showMonth-$showDay"
-                toDate.apply {
-                    year = y
-                    month = m
-                    day = d
-                }
-            }
-        }
-        datePicker.init(toDate.year, toDate.month, toDate.day, listener)
 
         if (type == 0) { //充值，31天记录
             minDate = System.currentTimeMillis() - 30 * 24 * 60 * 60 * 1000L
-        } else { //消费，两个月记录
-            /*var month = toDate.month - 1
-            var year = toDate.year
-            if (month < 0) {
-                month = 11
-                year = toDate.year - 1
-            }
-            calendar.set(year, month, 1, 0, 0, 0)*/
+        } else { //消费，7天
             minDate = System.currentTimeMillis() - 6 * 24 * 60 * 60 * 1000L
         }
-        Log.d(TAG, "######## max = $maxDate min=$minDate")
-        resetDate(minDate, maxDate)
+        var init = false
+        if (!TextUtils.isEmpty(originToData)) {
+            originToData.split("-")?.takeIf {
+                it.size == 3
+            }?.let {
+                toDate = MyDate(it[0].toInt(), it[1].toInt() - 1, it[2].toInt())
+                calendar.set(it[0].toInt(), it[1].toInt() - 1, it[2].toInt(), 23, 59, 0)
+                resetDate(fromDatePicker, minDate, calendar.timeInMillis)
+                init = true
+            }
+        }
+        if (!init) {
+            resetDate(fromDatePicker, minDate, maxDate)
+        }
 
-        resizePicker(datePicker)
+        init = false
+        if (!TextUtils.isEmpty(originFromData)) {
+            originFromData.split("-")?.takeIf {
+                it.size == 3
+            }?.let {
+                fromDate = MyDate(it[0].toInt(), it[1].toInt() - 1, it[2].toInt())
+                calendar.set(it[0].toInt(), it[1].toInt() - 1, it[2].toInt(), 1, 0, 0)
+                resetDate(toDatePicker, calendar.timeInMillis, maxDate)
+            }
+        }
+        if (!init) {
+            resetDate(toDatePicker, minDate, maxDate)
+        }
+
+        var fromListener = DatePicker.OnDateChangedListener { view, y, m, d ->
+            var showMonth = if (m < 9) "0${m + 1}" else "${m + 1}"
+            var showDay = if (d < 10) "0$d" else "$d"
+            rbFrom.text = "$y-$showMonth-$showDay"
+            fromDate.apply {
+                year = y
+                month = m
+                day = d
+            }
+        }
+        var toListener = DatePicker.OnDateChangedListener { view, y, m, d ->
+            var showMonth = if (m < 9) "0${m + 1}" else "${m + 1}"
+            var showDay = if (d < 10) "0$d" else "$d"
+            rbTo.text = "$y-$showMonth-$showDay"
+            toDate.apply {
+                year = y
+                month = m
+                day = d
+            }
+        }
+        if (!TextUtils.isEmpty(originFromData)) {
+            originFromData.split("-")?.takeIf {
+                it.size == 3
+            }?.let {
+                fromDatePicker.init(it[0].toInt(), it[1].toInt() - 1, it[2].toInt(), fromListener)
+                rbFrom.text = originFromData
+            }
+        } else {
+            fromDatePicker.init(toDate.year, toDate.month, toDate.day, fromListener)
+        }
+
+        if (!TextUtils.isEmpty(originToData)) {
+            originToData.split("-")?.takeIf {
+                it.size == 3
+            }?.let {
+                toDatePicker.init(it[0].toInt(), it[1].toInt() - 1, it[2].toInt(), toListener)
+                rbTo.text = originToData
+            }
+        } else {
+            toDatePicker.init(toDate.year, toDate.month, toDate.day, toListener)
+        }
+
+        resizePicker(fromDatePicker)
+        resizePicker(toDatePicker)
         //setDatePickerDividerColor(datePicker)
     }
 

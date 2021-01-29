@@ -1,15 +1,19 @@
 package com.lk.myproject.activity
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.TranslateAnimation
 import android.widget.DatePicker
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.NumberPicker
 import com.lk.myproject.R
+import com.lk.myproject.ext.dp2px
 import kotlinx.android.synthetic.main.activity_date_pick.*
 import java.lang.reflect.Field
 import java.util.Calendar
@@ -20,10 +24,61 @@ class DatePickActivity : BaseActivity() {
         setContentView(R.layout.activity_date_pick)
         textview.setOnClickListener {
             //initDate()
-            DateDialog(this, R.style.bottom_dialog, type = 1).show(action = { from, to ->
+            DateDialog(this, R.style.bottom_dialog, type = 1,
+                originFromData = tvFrom.text.toString(),
+                originToData = tvTo.text.toString()).show(action = { from, to ->
                 tvFrom.text = from
                 tvTo.text = to
             })
+        }
+        "2020-12-9".split("-").let {
+            var calendar = Calendar.getInstance()
+            calendar.set(it[0].toInt(), it[1].toInt() - 1, it[2].toInt(), 23, 59, 59)
+            var minDate = System.currentTimeMillis() - 30 * 24 * 60 * 60 * 1000L
+            fromDatePicker.maxDate = calendar.timeInMillis
+            calendar.set(it[0].toInt(), it[1].toInt() - 1, it[2].toInt() - 1, 23, 59, 59)
+            fromDatePicker.minDate = calendar.timeInMillis
+            fromDatePicker.init(it[0].toInt(), it[1].toInt() - 1, it[2].toInt(), null)
+        }
+
+        vClick.setOnClickListener {
+            showAnim()
+        }
+    }
+
+    private fun showAnim() {
+        var visible = llContent.visibility == View.VISIBLE
+
+        if (!visible) {
+            llContent.apply {
+                alpha = 1f
+                visibility = View.VISIBLE
+                /*animate()
+                    .alpha(1f)
+                    .setDuration(1500)
+                    .setListener(null)*/
+
+                val animate = TranslateAnimation(
+                    0f,  // fromXDelta
+                    0f,  // toXDelta
+                    0f,  // fromYDelta
+                    0f) // toYDelta
+                animate.duration = 1500
+                animate.fillAfter = true
+                llContent.startAnimation(animate)
+            }
+        } else {
+            llContent.apply {
+                visibility = View.VISIBLE
+                animate()
+                    .alpha(0f)
+                    .setDuration(1500)
+                    .setListener(object : AnimatorListenerAdapter() {
+                        override fun onAnimationEnd(animation: Animator) {
+                            llContent.visibility = View.GONE
+                        }
+                    })
+            }
         }
     }
 

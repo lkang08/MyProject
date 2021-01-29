@@ -95,7 +95,21 @@
     </RadioGroup>
 
     <DatePicker
-        android:id="@+id/datePicker"
+        android:id="@+id/fromDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:calendarViewShown="false"
+        android:layout_marginTop="10dp"
+        android:datePickerMode="spinner"
+        android:visibility="visible"
+        android:theme="@style/Theme.picker"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeGroup" />
+
+    <DatePicker
+        android:id="@+id/toDatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -105,5 +119,6 @@
         android:theme="@style/Theme.picker"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/timeGroup" />
 </android.support.constraint.ConstraintLayout>
