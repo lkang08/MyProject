@@ -13,7 +13,8 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.NumberPicker
 import com.lk.myproject.R
-import com.lk.myproject.ext.dp2px
+import com.lk.myproject.utils.heavy
+import com.lk.myproject.utils.log
 import kotlinx.android.synthetic.main.activity_date_pick.*
 import java.lang.reflect.Field
 import java.util.Calendar
@@ -42,8 +43,18 @@ class DatePickActivity : BaseActivity() {
         }
 
         vClick.setOnClickListener {
-            showAnim()
+            //showAnim()
+            test()
         }
+    }
+
+    private fun test() {
+        heavy {
+            log("heavy")
+            ""
+        }.onResponse {
+
+        }.run()
     }
 
     private fun showAnim() {
