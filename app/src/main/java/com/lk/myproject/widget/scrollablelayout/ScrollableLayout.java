@@ -3,7 +3,6 @@ package com.lk.myproject.widget.scrollablelayout;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -12,6 +11,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * 第二个view置顶悬浮

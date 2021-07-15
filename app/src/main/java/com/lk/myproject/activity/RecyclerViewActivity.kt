@@ -3,10 +3,10 @@ package com.lk.myproject.activity
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.fastjson.JSONObject
 import com.lk.myproject.Bean.VideoHeartGuardItem
 import com.lk.myproject.MyApplication

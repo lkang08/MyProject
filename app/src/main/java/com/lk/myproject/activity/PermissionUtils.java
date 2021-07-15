@@ -10,11 +10,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.util.SimpleArrayMap;
 
 
 import java.lang.reflect.Method;
+
+import androidx.collection.SimpleArrayMap;
+import androidx.core.app.ActivityCompat;
 
 /**
  * Created by lijun3 on 2016/7/4.

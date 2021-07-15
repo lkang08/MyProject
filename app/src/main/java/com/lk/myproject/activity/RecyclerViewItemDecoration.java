@@ -1,8 +1,9 @@
 package com.lk.myproject.activity;
 
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 为RecyclerView增加间距

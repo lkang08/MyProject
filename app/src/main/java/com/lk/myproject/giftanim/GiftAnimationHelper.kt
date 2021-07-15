@@ -2,10 +2,10 @@ package com.lk.myproject.giftanim
 
 import android.app.Activity
 import android.content.Context
-import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import com.lk.myproject.R
 
 class GiftAnimationHelper(var context: Context) {

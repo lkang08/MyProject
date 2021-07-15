@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
@@ -18,6 +19,8 @@ import com.lk.myproject.utils.log
 import kotlinx.android.synthetic.main.activity_date_pick.*
 import java.lang.reflect.Field
 import java.util.Calendar
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.locks.ReentrantLock
 
 class DatePickActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,13 +51,85 @@ class DatePickActivity : BaseActivity() {
         }
     }
 
+    var index = 1
+    val lock = ReentrantLock(true)
+
+    inner class MyThread : Thread() {
+        override fun run() {
+            super.run()
+            try {
+                if (lock.tryLock(2, TimeUnit.SECONDS)) {
+                    for (i in 1..1) {
+                        log("$this 1 $i")
+                        sleep(200)
+                        log("$this 2 $i")
+                        sleep(200)
+                        log("$this 3 $i")
+                    }
+                }
+            } finally {
+                lock.unlock()
+            }
+        }
+    }
+
+    inner class MyThread2 : Thread() {
+        override fun run() {
+            super.run()
+            try {
+                if (lock.tryLock(2, TimeUnit.SECONDS)) {
+                    for (i in 1..1) {
+                        log("$this 11 $i")
+                        sleep(200)
+                        log("$this 22 $i")
+                        sleep(200)
+                        log("$this 33 $i")
+                    }
+                }
+            } finally {
+                lock.unlock()
+            }
+        }
+    }
+
     private fun test() {
-        heavy {
+        var t2 = MyThread2()
+        t2.start()
+
+        var t = MyThread()
+        t.start()
+
+
+        /*lock.lock()
+        try {
+            try {
+                if (lock.tryLock(1, TimeUnit.SECONDS)) {
+                    log("second lock")
+                } else {
+                    log("not second lock")
+                }
+            } finally {
+                lock.unlock()
+            }
+        } finally {
+            lock.unlock()
+        }
+        try {
+            if (lock.tryLock(1, TimeUnit.SECONDS)) {
+                log("222second lock")
+            } else {
+                log("222not second lock")
+            }
+        } finally {
+            lock.unlock()
+        }*/
+
+        /*heavy {
             log("heavy")
             ""
         }.onResponse {
 
-        }.run()
+        }.run()*/
     }
 
     private fun showAnim() {

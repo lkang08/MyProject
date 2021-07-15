@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -19,6 +17,9 @@ import com.lk.myproject.utils.NotificationUtils;
 
 import java.security.acl.NotOwnerException;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 public class NotificationActivity extends Activity {
     private NotificationManager updateNotificationManager;

@@ -9,13 +9,14 @@ import android.graphics.drawable.TransitionDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import com.lk.myproject.R
 
 /**
  * 圆形头像
  *
  */
-class CircleImageView : android.support.v7.widget.AppCompatImageView {
+class CircleImageView : AppCompatImageView {
 
     private val mDrawableRect = RectF()
     private val mBorderRect = RectF()
@@ -116,7 +117,6 @@ class CircleImageView : android.support.v7.widget.AppCompatImageView {
         } catch (throwable: Throwable) {
             Log.e(TAG, null, throwable)
         }
-
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -168,11 +168,9 @@ class CircleImageView : android.support.v7.widget.AppCompatImageView {
                 if (bitmap != null) {
                     return bitmap
                 }
-
             } catch (e: Exception) {
                 Log.e(TAG, "Get TransitionDrawable error.", e)
             }
-
         }
 
 
@@ -190,7 +188,6 @@ class CircleImageView : android.support.v7.widget.AppCompatImageView {
         } catch (e: OutOfMemoryError) {
             return null
         }
-
     }
 
     private fun setup() {

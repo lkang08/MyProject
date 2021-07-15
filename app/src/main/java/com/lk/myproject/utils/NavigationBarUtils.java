@@ -3,10 +3,11 @@ package com.lk.myproject.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 
 public class NavigationBarUtils {
     private static final String NAVIGATION = "navigationBarBackground";

@@ -5,10 +5,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 
 import com.lk.myproject.MyApplication;
 import com.lk.myproject.R;
+
+import androidx.annotation.RequiresApi;
 
 import static android.app.Notification.VISIBILITY_SECRET;
 import static android.content.Context.NOTIFICATION_SERVICE;

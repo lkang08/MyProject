@@ -6,9 +6,6 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.Adapter
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.util.Log
@@ -18,6 +15,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.gif.GifDrawable
@@ -200,7 +199,7 @@ class GifActivity : Activity() {
     }
 
     data class Item(var name: String = "", var icon: String = "", var description: String = "")
-    class MyAdapter(var activity: GifActivity? = null) : Adapter<MyViewHolder>() {
+    class MyAdapter(var activity: GifActivity? = null) : RecyclerView.Adapter<MyViewHolder>() {
         var dataList: List<Item>? = null
         override fun onCreateViewHolder(parent: ViewGroup, pos: Int): MyViewHolder {
             var view = LayoutInflater.from(parent.context).inflate(R.layout.activity_gif_item, parent, false)

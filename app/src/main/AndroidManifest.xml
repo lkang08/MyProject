@@ -93,7 +93,11 @@
 
         </activity>
         <activity android:name=".activity.PermissionActivity"></activity>
-        <activity android:name=".activity.DatePickActivity">
+        <activity android:name=".activity.DatePickActivity"
+            tools:ignore="Instantiatable">
+        </activity>
+        <activity android:name=".activity.FirstActivity"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

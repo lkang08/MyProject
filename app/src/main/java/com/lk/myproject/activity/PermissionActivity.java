@@ -3,7 +3,6 @@ package com.lk.myproject.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
 import com.lk.myproject.R;
