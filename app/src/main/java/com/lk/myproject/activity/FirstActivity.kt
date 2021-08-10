@@ -7,13 +7,15 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.lk.myproject.R
-import com.lk.myproject.ext.dp2px
+import com.lk.myproject.ext.log
 import com.lk.myproject.ext.screenWidth
 import com.lk.myproject.toast.ToastUtils
 import com.lk.myproject.utils.log
 import kotlinx.android.synthetic.main.activity_first.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class FirstActivity : BaseActivity() {
     var index = 1
@@ -61,6 +63,21 @@ class FirstActivity : BaseActivity() {
         var NEW_USER_RED_PACKAGE_BG = IMAGE + "/20210705153902342_bs2_format.png"
     }
 
+    var temp = 1
+    var executor: ExecutorService = Executors.newSingleThreadExecutor { r -> Thread(r, "test_thread") }
+    fun test() {
+        GlobalScope.launch {
+            Thread({
+                "${Thread.currentThread().name} run $temp ".log()
+            }, "test_${temp++}").start()
+        }
+        /*for (i in 1..10) {
+            executor.execute {
+                "${Thread.currentThread().name} run $i ".log()
+            }
+        }*/
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first)
@@ -68,6 +85,7 @@ class FirstActivity : BaseActivity() {
             //onClick()
             Glide.get(this).clearMemory()
             ToastUtils.showToast(this, "click${index++}", Toast.LENGTH_SHORT)
+            test()
         }
         Glide.with(this)
             .load(FULL_HOUSE_BG)

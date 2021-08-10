@@ -44,6 +44,7 @@ dependencies {
     api 'com.alibaba:fastjson:1.1.70.android'
     api 'com.ms-square:expandableTextView:0.1.4'
     api 'cn.carbs.android:ExpandableTextView:1.0.3'
+    api "com.xander.performance:perf:0.1.9"
 }
 repositories {
     mavenCentral()
