@@ -8,7 +8,9 @@ package com.lk.myproject.performance;
 class Config {
     public static long UI_BLOCK_INTERVAL_TIME = 100L;
     public static long FPS_INTERVAL_TIME = 2000L;
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     public static long MAX_HANDLER_DISPATCH_MSG_TIME = 100L;
 

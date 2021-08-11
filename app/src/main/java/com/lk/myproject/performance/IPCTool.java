@@ -23,28 +23,32 @@ class IPCTool {
     }
 
     static void start() {
-        xLog.e(TAG, "start");
+        XLog.e(TAG, "start");
         hookWithEpic();
     }
 
     private static void hookWithEpic() {
         try {
-            DexposedBridge.findAndHookMethod(Parcel.class, "readException", new Object[]{new ParcelReadExceptionHook()});
-            xLog.e(TAG, "hookWithEpic");
+            DexposedBridge.findAndHookMethod(Parcel.class, "readException",
+                    new Object[]{new ParcelReadExceptionHook()});
+            XLog.e(TAG, "hookWithEpic");
         } catch (Exception var1) {
-            xLog.e(TAG, "hookWithEpic", var1);
+            XLog.e(TAG, "hookWithEpic", var1);
         }
 
     }
 
     private static void hookTransactListener() {
-        setTransactListener((Object)null);
+        setTransactListener((Object) null);
 
         try {
-            DexposedBridge.findAndHookMethod(Class.forName("android.os.BinderProxy"), "setTransactListener", new Object[]{Class.forName("android.os.Binder$ProxyTransactListener"), new SetTransactListenerHook()});
-            xLog.e(TAG, "hookTransactListener");
+            DexposedBridge.findAndHookMethod(Class.forName("android.os.BinderProxy"),
+                    "setTransactListener",
+                    new Object[]{Class.forName("android.os.Binder$ProxyTransactListener"),
+                            new SetTransactListenerHook()});
+            XLog.e(TAG, "hookTransactListener");
         } catch (Exception var1) {
-            xLog.e(TAG, "hookTransactListener", var1);
+            XLog.e(TAG, "hookTransactListener", var1);
         }
 
     }
@@ -54,7 +58,7 @@ class IPCTool {
             Class binderProxy;
             if (null == gTransactListenerHandler) {
                 binderProxy = IPCTool.class;
-                synchronized(IPCTool.class) {
+                synchronized (IPCTool.class) {
                     if (null == gTransactListenerHandler) {
                         gTransactListenerHandler = new TransactListenerHandler();
                     }
@@ -66,13 +70,14 @@ class IPCTool {
             Method setMethod = binderProxy.getDeclaredMethod("setTransactListener", transactListener);
             setMethod.setAccessible(true);
             gTransactListenerHandler.setTarget(target);
-            Object proxyInstance = Proxy.newProxyInstance(Binder.class.getClassLoader(), new Class[]{transactListener}, gTransactListenerHandler);
-            setMethod.invoke((Object)null, proxyInstance);
+            Object proxyInstance = Proxy.newProxyInstance(Binder.class.getClassLoader(),
+                    new Class[]{transactListener}, gTransactListenerHandler);
+            setMethod.invoke((Object) null, proxyInstance);
             Field listener = binderProxy.getDeclaredField("sTransactListener");
             listener.setAccessible(true);
-            xLog.e(TAG, "android.os.BinderProxy.sTransactListener is:" + listener.get((Object)null));
+            XLog.e(TAG, "android.os.BinderProxy.sTransactListener is:" + listener.get((Object) null));
         } catch (Exception var7) {
-            xLog.e(TAG, "setTransactListener error", var7);
+            XLog.e(TAG, "setTransactListener error", var7);
         }
 
     }
@@ -148,7 +153,7 @@ class IPCTool {
 
         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
             super.beforeHookedMethod(param);
-            xLog.e(IPCTool.TAG, "WriteInterfaceTokenHook:" + param.args[0]);
+            XLog.e(IPCTool.TAG, "WriteInterfaceTokenHook:" + param.args[0]);
             IPCIssue ipcIssue = new IPCIssue(param.args[0], "IPC", StackTraceUtils.list());
             ipcIssue.print();
         }

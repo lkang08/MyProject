@@ -1,14 +1,17 @@
 package com.lk.myproject.performance;
 
-import de.robv.android.xposed.DexposedBridge;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import de.robv.android.xposed.DexposedBridge;
 import me.weishu.epic.BuildConfig;
 
 class StackTraceUtils {
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     static Set<String> ignorePackageSet = new HashSet();
 
@@ -30,7 +33,7 @@ class StackTraceUtils {
         StringBuilder stringBuilder = new StringBuilder();
         int i = 0;
 
-        for(int len = stackTraceElements.length; i < len; ++i) {
+        for (int len = stackTraceElements.length; i < len; ++i) {
             StackTraceElement element = stackTraceElements[i];
             list.add(stringStackTraceElement(element, stringBuilder));
         }
@@ -38,20 +41,24 @@ class StackTraceUtils {
         return list;
     }
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     private static String filterPackageName(String className) {
         return filterPackageName(new StringBuilder(), className);
     }
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     private static String filterPackageName(StringBuilder stringBuilder, String className) {
         stringBuilder.setLength(0);
         int count = 0;
         int m = 0;
 
-        for(int n = className.length(); m < n; ++m) {
+        for (int n = className.length(); m < n; ++m) {
             char c = className.charAt(m);
             if (c == '.') {
                 ++count;
@@ -69,7 +76,9 @@ class StackTraceUtils {
 
     private static String stringStackTraceElement(StackTraceElement element, StringBuilder stringBuilder) {
         stringBuilder.delete(0, stringBuilder.length());
-        stringBuilder.append(element.getClassName()).append('.').append(element.getMethodName()).append('(').append(element.getFileName()).append(':').append(element.getLineNumber()).append(')');
+        stringBuilder.append(element.getClassName()).append('.').append(element.getMethodName())
+                .append('(').append(element.getFileName()).append(':')
+                .append(element.getLineNumber()).append(')');
         return stringBuilder.toString();
     }
 

@@ -18,16 +18,16 @@ import java.util.LinkedHashSet;
 
 class DumpTool {
     private static String TAG;
-    private static LinkedHashSet<DumpTool.DumpSysListener> dumpListeners;
+    private static LinkedHashSet<DumpSysListener> dumpListeners;
 
     DumpTool() {
     }
 
-    public static void addDumpListener(DumpTool.DumpSysListener dumpListener) {
+    public static void addDumpListener(DumpSysListener dumpListener) {
         dumpListeners.add(dumpListener);
     }
 
-    public static void removeDumpListener(DumpTool.DumpSysListener dumpListener) {
+    public static void removeDumpListener(DumpSysListener dumpListener) {
         dumpListeners.remove(dumpListener);
     }
 
@@ -36,21 +36,22 @@ class DumpTool {
     }
 
     static void init(String serviceName) {
-        xLog.e(TAG, "init");
+        XLog.e(TAG, "init");
 
         try {
             addService(serviceName);
         } catch (Exception var2) {
-            xLog.w(TAG, "DumpTool init error:", var2);
+            XLog.w(TAG, "DumpTool init error:", var2);
         }
 
     }
 
-    private static void addService(String serviceName) throws NoSuchMethodException, ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+    private static void addService(String serviceName) throws NoSuchMethodException,
+            ClassNotFoundException, InvocationTargetException, IllegalAccessException {
         Class<?> smClass = Class.forName("android.os.ServiceManager");
         Method addServiceMethod = smClass.getDeclaredMethod("addService", String.class, IBinder.class);
         addServiceMethod.setAccessible(true);
-        addServiceMethod.invoke((Object)null, serviceName, new DumpTool.DumpSysBinder());
+        addServiceMethod.invoke((Object) null, serviceName, new DumpSysBinder());
     }
 
     static {
@@ -68,22 +69,22 @@ class DumpTool {
 
         public void dump(FileDescriptor fd, String[] args) {
             super.dump(fd, args);
-            xLog.e(DumpTool.TAG, "dump");
+            XLog.e(DumpTool.TAG, "dump");
             this.dump(args);
         }
 
         public void dumpAsync(FileDescriptor fd, String[] args) {
             super.dumpAsync(fd, args);
-            xLog.e(DumpTool.TAG, "dumpAsync");
+            XLog.e(DumpTool.TAG, "dumpAsync");
             this.dump(args);
         }
 
         private void dump(String[] args) {
-            xLog.e(DumpTool.TAG, Arrays.toString(args));
+            XLog.e(DumpTool.TAG, Arrays.toString(args));
             Iterator var2 = DumpTool.dumpListeners.iterator();
 
-            while(var2.hasNext()) {
-                DumpTool.DumpSysListener listener = (DumpTool.DumpSysListener)var2.next();
+            while (var2.hasNext()) {
+                DumpSysListener listener = (DumpSysListener) var2.next();
                 if (listener.dump(args)) {
                     break;
                 }

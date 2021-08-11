@@ -2,10 +2,10 @@ package com.lk.myproject.performance;
 
 import android.util.Log;
 
-class xLog {
+class XLog {
     private static int LOG_LEVEL = 3;
 
-    xLog() {
+    XLog() {
     }
 
     public static void setLogLevel(int logLevel) {

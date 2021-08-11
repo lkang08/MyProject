@@ -13,7 +13,7 @@ import android.view.Choreographer.FrameCallback;
 
 class FPSTool {
     private static String TAG;
-    private static FPSTool.FrameRunnable frameRunnable;
+    private static FrameRunnable frameRunnable;
     private static Handler handler;
 
     FPSTool() {
@@ -24,7 +24,7 @@ class FPSTool {
     }
 
     static void start() {
-        xLog.e(TAG, "start");
+        XLog.e(TAG, "start");
         handler = new Handler(Looper.getMainLooper());
         handler.post(frameRunnable);
         Choreographer.getInstance().postFrameCallback(frameRunnable);
@@ -32,7 +32,7 @@ class FPSTool {
 
     static {
         TAG = PERF.TAG + "_FPSTool";
-        frameRunnable = new FPSTool.FrameRunnable();
+        frameRunnable = new FrameRunnable();
         handler = new Handler();
     }
 
@@ -53,12 +53,12 @@ class FPSTool {
         public void run() {
             long curTime = SystemClock.elapsedRealtime();
             if (this.time != 0L) {
-                int fps = (int)(1000.0F * (float)this.count / (float)(curTime - this.time) + 0.5F);
+                int fps = (int) (1000.0F * (float) this.count / (float) (curTime - this.time) + 0.5F);
                 String fpsStr = String.format("APP FPS is: %-3sHz", fps);
                 if (fps <= 50) {
-                    xLog.e(FPSTool.TAG, fpsStr);
+                    XLog.e(FPSTool.TAG, fpsStr);
                 } else {
-                    xLog.w(FPSTool.TAG, fpsStr);
+                    XLog.w(FPSTool.TAG, fpsStr);
                 }
             }
 

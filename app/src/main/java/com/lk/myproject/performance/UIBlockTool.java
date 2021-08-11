@@ -15,9 +15,9 @@ import de.robv.android.xposed.XC_MethodHook;
 
 class UIBlockTool {
     private static String TAG;
-    private static UIBlockTool.DumpInfoThread dumpInfoThread;
+    private static DumpInfoThread dumpInfoThread;
     private static Handler dumpInfoHandler;
-    private static UIBlockTool.DumpInfoRunnable dumpMainThreadRunnable;
+    private static DumpInfoRunnable dumpMainThreadRunnable;
 
     UIBlockTool() {
     }
@@ -27,7 +27,7 @@ class UIBlockTool {
     }
 
     static void start() {
-        xLog.e(TAG, "start");
+        XLog.e(TAG, "start");
         startDumpInfoThread();
         hookDecorViewDispatchKeyEvent();
         initMainLooperPrinter();
@@ -38,7 +38,7 @@ class UIBlockTool {
     }
 
     private static void initMainLooperPrinter() {
-        Looper.getMainLooper().setMessageLogging(new UIBlockTool.WatcherMainLooperPrinter());
+        Looper.getMainLooper().setMessageLogging(new WatcherMainLooperPrinter());
     }
 
     private static void startDumpInfo() {
@@ -57,18 +57,19 @@ class UIBlockTool {
     private static void hookDecorViewDispatchKeyEvent() {
         try {
             Class decorViewClass = Class.forName("com.android.internal.policy.DecorView");
-            DexposedBridge.findAndHookMethod(decorViewClass, "dispatchKeyEvent", new Object[]{KeyEvent.class, new UIBlockTool.DecorViewDispatchKeyEventHook()});
+            DexposedBridge.findAndHookMethod(decorViewClass, "dispatchKeyEvent",
+                    new Object[]{KeyEvent.class, new DecorViewDispatchKeyEventHook()});
         } catch (Exception var1) {
             var1.printStackTrace();
-            xLog.e(TAG, "hookDecorViewDispatchKeyEvent", var1);
+            XLog.e(TAG, "hookDecorViewDispatchKeyEvent", var1);
         }
 
     }
 
     static {
         TAG = PERF.TAG + "_UIBlockTool";
-        dumpInfoThread = new UIBlockTool.DumpInfoThread("DumpInfoThread");
-        dumpMainThreadRunnable = new UIBlockTool.DumpInfoRunnable();
+        dumpInfoThread = new DumpInfoThread("DumpInfoThread");
+        dumpMainThreadRunnable = new DumpInfoRunnable();
     }
 
     static class DecorViewDispatchKeyEventHook extends XC_MethodHook {

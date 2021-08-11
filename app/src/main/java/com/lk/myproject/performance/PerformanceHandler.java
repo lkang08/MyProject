@@ -5,7 +5,6 @@ package com.lk.myproject.performance;
 // (powered by FernFlower decompiler)
 //
 
-
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -14,7 +13,7 @@ import java.util.HashMap;
 
 public class PerformanceHandler extends Handler {
     private static String TAG;
-    private static HashMap<String, PerformanceHandler.HandlerIssue> msgIssuesMap;
+    private static HashMap<String, HandlerIssue> msgIssuesMap;
 
     public PerformanceHandler() {
     }
@@ -27,7 +26,7 @@ public class PerformanceHandler extends Handler {
         boolean result = super.sendMessageAtTime(msg, uptimeMillis);
         if (result) {
             String msgKey = Integer.toHexString(msg.hashCode());
-            PerformanceHandler.HandlerIssue msgIssues = new PerformanceHandler.HandlerIssue("HANDLER SEND MESSAGE", StackTraceUtils.list());
+            HandlerIssue msgIssues = new HandlerIssue("HANDLER SEND MESSAGE", StackTraceUtils.list());
             msgIssuesMap.put(msgKey, msgIssues);
         }
 
@@ -40,7 +39,7 @@ public class PerformanceHandler extends Handler {
         super.dispatchMessage(msg);
         long costTime = SystemClock.elapsedRealtime() - startTime;
         if (costTime > Config.MAX_HANDLER_DISPATCH_MSG_TIME && msgIssuesMap.containsKey(msgKey)) {
-            PerformanceHandler.HandlerIssue msgIssues = (PerformanceHandler.HandlerIssue)msgIssuesMap.get(msgKey);
+            HandlerIssue msgIssues = (HandlerIssue) msgIssuesMap.get(msgKey);
             msgIssues.costTime = costTime;
             msgIssues.print();
         }

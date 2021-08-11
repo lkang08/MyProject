@@ -18,7 +18,7 @@ public class PERF {
         if (null == builder.issueSupplier) {
             throw new IllegalArgumentException("issue supplier is missing!!!");
         } else {
-            xLog.setLogLevel(builder.logLevel);
+            XLog.setLogLevel(builder.logLevel);
             TAG = builder.globalTag;
             ThreadTool.resetTag(TAG);
             DumpTool.resetTag(TAG);
@@ -64,7 +64,9 @@ public class PERF {
         boolean mCheckFPS;
         boolean mCheckIPC;
         IssueSupplier issueSupplier;
-        /** @deprecated */
+        /**
+         * @deprecated
+         */
         @Deprecated
         Context appContext;
         String globalTag;

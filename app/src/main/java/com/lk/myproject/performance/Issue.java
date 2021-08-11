@@ -28,7 +28,9 @@ public class Issue {
     public static final int TYPE_FPS = 1;
     public static final int TYPE_IPC = 2;
     public static final int TYPE_THREAD = 3;
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     @Deprecated
     public static final int TYPE_HANDLER = 4;
     private static volatile ExecutorService taskService = Executors.newSingleThreadExecutor();
@@ -71,7 +73,7 @@ public class Issue {
 
     protected String typeToString() {
         String str = null;
-        switch(this.type) {
+        switch (this.type) {
             case 0:
                 str = "UI BLOCK";
                 break;
@@ -102,7 +104,7 @@ public class Issue {
             this.buildOtherString(sb);
             if (this.data instanceof List) {
                 sb.append("trace:\n");
-                this.buildListString(sb, (List)this.data);
+                this.buildListString(sb, (List) this.data);
             } else if (null != this.data) {
                 sb.append("data: ").append(this.data).append('\n');
             }
@@ -123,7 +125,7 @@ public class Issue {
     protected void buildListString(StringBuilder sb, List<?> dataList) {
         int i = 0;
 
-        for(int len = dataList.size(); i < len; ++i) {
+        for (int len = dataList.size(); i < len; ++i) {
             Object item = dataList.get(i);
             sb.append('\t').append(item).append('\n');
         }
@@ -131,7 +133,7 @@ public class Issue {
     }
 
     protected void log(String tag, String msg) {
-        xLog.w(tag, msg);
+        XLog.w(tag, msg);
     }
 
     public void print() {
@@ -156,7 +158,7 @@ public class Issue {
     }
 
     protected static void createLogFileAndBuffer() {
-        xLog.e(TAG, "createLogFileAndBuffer gBuffer:" + gMappedByteBuffer);
+        XLog.e(TAG, "createLogFileAndBuffer gBuffer:" + gMappedByteBuffer);
         if (null != gMappedByteBuffer) {
             gMappedByteBuffer.force();
             gMappedByteBuffer = null;
@@ -166,7 +168,7 @@ public class Issue {
             try {
                 gRandomAccessFile.close();
             } catch (IOException var3) {
-                xLog.e(TAG, "gRandomAccessFile IOException", var3);
+                XLog.e(TAG, "gRandomAccessFile IOException", var3);
             }
 
             gRandomAccessFile = null;
@@ -185,13 +187,13 @@ public class Issue {
 
         try {
             gLogFile.createNewFile();
-            xLog.e(TAG, "create log file :" + gLogFile.getAbsolutePath());
+            XLog.e(TAG, "create log file :" + gLogFile.getAbsolutePath());
             gRandomAccessFile = new RandomAccessFile(gLogFile.getAbsolutePath(), "rw");
             gMappedByteBuffer = gRandomAccessFile.getChannel().map(MapMode.READ_WRITE, 0L, 1048576L);
             gLineBytes = String.format(Locale.US, LINE_FORMAT, 0).getBytes();
             gMappedByteBuffer.put(gLineBytes);
         } catch (IOException var2) {
-            xLog.e(TAG, "gRandomAccessFile IOException", var2);
+            XLog.e(TAG, "gRandomAccessFile IOException", var2);
         }
 
         deleteOldFiles();
@@ -206,12 +208,12 @@ public class Issue {
         if (null != files && files.length != 0) {
             Arrays.sort(files, new Comparator<File>() {
                 public int compare(File o1, File o2) {
-                    return (int)(o2.lastModified() - o1.lastModified());
+                    return (int) (o2.lastModified() - o1.lastModified());
                 }
             });
             File lastLogFile = null;
 
-            for(int i = 0; i < files.length; ++i) {
+            for (int i = 0; i < files.length; ++i) {
                 final File file = files[i];
                 if (!file.isDirectory() && file.isFile()) {
                     if (file.getName().endsWith(".log")) {
@@ -234,7 +236,7 @@ public class Issue {
                 }
             }
 
-            xLog.e(TAG, "initMappedByteBuffer lastLogFile:" + lastLogFile);
+            XLog.e(TAG, "initMappedByteBuffer lastLogFile:" + lastLogFile);
             if (null != lastLogFile) {
                 try {
                     gLogFile = lastLogFile;
@@ -251,7 +253,7 @@ public class Issue {
                         lastPosition = Integer.parseInt((new String(gLineBytes)).trim());
                     }
 
-                    xLog.e(TAG, "initMappedByteBuffer lastPosition:" + lastPosition);
+                    XLog.e(TAG, "initMappedByteBuffer lastPosition:" + lastPosition);
                     if (lastPosition >= 1048576) {
                         createLogFileAndBuffer();
                     } else {
@@ -260,7 +262,7 @@ public class Issue {
 
                     deleteOldFiles();
                 } catch (IOException var4) {
-                    xLog.e(TAG, "initMappedByteBuffer", var4);
+                    XLog.e(TAG, "initMappedByteBuffer", var4);
                     createLogFileAndBuffer();
                 }
             } else {
@@ -273,7 +275,7 @@ public class Issue {
     }
 
     protected static void zipLogFile(final File logFile) {
-        xLog.e(TAG, "zipLogFile:" + logFile);
+        XLog.e(TAG, "zipLogFile:" + logFile);
         executorService().submit(new Runnable() {
             public void run() {
                 File zipLogFile = Issue.doZipLogFile(logFile);
@@ -295,8 +297,8 @@ public class Issue {
             return zipLogFile;
         } else {
             try {
-                xLog.e(TAG, "doZipLogFile src:" + logFile.getAbsolutePath());
-                xLog.e(TAG, "doZipLogFile dst:" + zipLogFile.getAbsolutePath());
+                XLog.e(TAG, "doZipLogFile src:" + logFile.getAbsolutePath());
+                XLog.e(TAG, "doZipLogFile dst:" + zipLogFile.getAbsolutePath());
                 FileOutputStream fos = new FileOutputStream(zipLogFile);
                 ZipOutputStream zop = new ZipOutputStream(fos);
                 ZipEntry zipEntry = new ZipEntry(logFile.getName());
@@ -305,7 +307,7 @@ public class Issue {
                 FileInputStream fip = new FileInputStream(logFile);
 
                 int length;
-                while((length = fip.read(bytes)) >= 0) {
+                while ((length = fip.read(bytes)) >= 0) {
                     zop.write(bytes, 0, length);
                 }
 
@@ -335,12 +337,12 @@ public class Issue {
                 if (null != files && files.length != 0) {
                     Arrays.sort(files, new Comparator<File>() {
                         public int compare(File o1, File o2) {
-                            return (int)(o2.lastModified() - o1.lastModified());
+                            return (int) (o2.lastModified() - o1.lastModified());
                         }
                     });
                     long fileLength = 0L;
 
-                    for(int i = 0; i < files.length; ++i) {
+                    for (int i = 0; i < files.length; ++i) {
                         File file = files[i];
                         if (file.isFile() && file.getName().endsWith("zip")) {
                             if (fileLength >= maxCacheSize) {
@@ -365,10 +367,11 @@ public class Issue {
             issueSupplier = new DefaultIssueSupplier();
         }
 
-        gIssueSupplier = (PERF.IssueSupplier)issueSupplier;
-        ISSUES_CACHE_DIR = new File(((PERF.IssueSupplier)issueSupplier).cacheRootDir(), ISSUES_CACHE_DIR_NAME);
+        gIssueSupplier = (PERF.IssueSupplier) issueSupplier;
+        ISSUES_CACHE_DIR = new File(((PERF.IssueSupplier) issueSupplier).cacheRootDir(),
+                ISSUES_CACHE_DIR_NAME);
         ISSUES_CACHE_DIR.mkdirs();
-        xLog.e(TAG, "issues save in:" + ISSUES_CACHE_DIR.getAbsolutePath());
+        XLog.e(TAG, "issues save in:" + ISSUES_CACHE_DIR.getAbsolutePath());
     }
 
     static {
