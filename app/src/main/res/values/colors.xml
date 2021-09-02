@@ -22,4 +22,7 @@
 
     <color name="btn_press_color">#66E45858</color>
     <color name="btn_unpress_color">#22000000</color>
+
+    <color name="shape_color1">#ffffffff</color>
+    <color name="shape_color2">#ffFFD729</color>
 </resources>

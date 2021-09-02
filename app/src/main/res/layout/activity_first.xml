@@ -9,64 +9,65 @@
 
     <TextView
         android:id="@+id/tvText"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Hello World"
-        android:textStyle="bold"
-        android:textSize="28sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></TextView>
+        android:layout_height="wrap_content"
+        android:text="Hello World"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvThisWeek"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:text="ttttt"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="ttttt"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvLastWeek"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvThisWeek"
-        android:textStyle="bold"
-        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="ttttt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvThisWeek" />
 
     <TextView
         android:id="@+id/tvThisMonth"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLastWeek"
-        android:textStyle="bold"
-        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="ttttt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLastWeek" />
 
     <TextView
         android:id="@+id/tvLastMonth"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvThisMonth"
-        android:textStyle="bold"
-        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="ttttt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvThisMonth" />
 
     <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/bgImage"
             android:layout_width="match_parent"
@@ -78,9 +79,9 @@
         android:id="@+id/ivNoData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="33dp"
         app:layout_constraintTop_toBottomOf="@id/layout1" />
 
     <LinearLayout
@@ -88,11 +89,11 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginBottom="17dp"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:background="@drawable/shape_calling_recharge_bg"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/tvText"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        tools:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -117,4 +118,100 @@
             android:textSize="11dp"
             android:textStyle="bold" />
     </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/proBg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/icon_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvText" />
+
+    <com.lk.myproject.giftchains.CircleProgressView
+        android:id="@+id/progress"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:backColor="@color/transparent"
+        app:backWidth="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/proBg"
+        app:layout_constraintLeft_toLeftOf="@+id/proBg"
+        app:layout_constraintRight_toRightOf="@+id/proBg"
+        app:layout_constraintTop_toTopOf="@+id/proBg"
+        app:progColor="#FFE159"
+        app:progWidth="5dp"
+        app:progress="0" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/transparent"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress">
+
+        <FrameLayout
+            android:id="@+id/flRight"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="-30dp"
+            android:layout_toLeftOf="@+id/proBg2"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvRight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_bg_gift_chains_tip_right"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:paddingLeft="13dp"
+                android:paddingRight="30dp"
+                android:text="送出xx礼物可参与接龙，频道送出满66/188/520次可触发效果，个人送出该送出该数量可得额外奖励 送出xx礼物可参与接龙，频道送出满66/188/520次课触发效果，个人送出该送出该数量可得额外奖励"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/flLeft"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="-30dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/proBg2"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_bg_gift_chains_tip_left"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:paddingLeft="30dp"
+                android:paddingRight="13dp"
+                android:text="送出xx礼物可参与接龙，频道送出满66/188/520次可触发效果，个人送出该送出该数量可得额外奖励 送出xx礼物可参与接龙，频道送出满66/188/520次课触发效果，个人送出该送出该数量可得额外奖励"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/proBg2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/icon_back" />
+
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

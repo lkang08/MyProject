@@ -1,19 +1,22 @@
 package com.lk.myproject
 
+import android.app.Application
 import android.content.Context
 import android.os.SystemClock
 import android.util.Log
+import com.lk.myproject.hook.ThreadMethodHook
 import com.lk.myproject.performance.PERF
-import com.uuch.adlibrary.LApplication
 import java.io.File
 
-class MyApplication : LApplication() {
+class MyApplication : Application() {
     companion object {
         lateinit var app: MyApplication
         var begin: Long = 0L
         fun l(msg: String) {
-            Log.d("abctest",
-                "$msg time = ${SystemClock.currentThreadTimeMillis() - begin}")
+            Log.d(
+                "abctest",
+                "$msg time = ${SystemClock.currentThreadTimeMillis() - begin}"
+            )
         }
     }
 
@@ -26,6 +29,7 @@ class MyApplication : LApplication() {
         super.onCreate()
         app = this
         initPerformanceTool()
+        ThreadMethodHook.testHook()
         l("app onCreate")
     }
 

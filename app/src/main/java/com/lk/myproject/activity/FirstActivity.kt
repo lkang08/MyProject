@@ -1,19 +1,26 @@
 package com.lk.myproject.activity
 
+import android.animation.Animator
+import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.lk.myproject.R
-import com.lk.myproject.ext.log
+import com.lk.myproject.ext.dp2px
 import com.lk.myproject.ext.screenWidth
 import com.lk.myproject.toast.ToastUtils
 import com.lk.myproject.utils.log
 import kotlinx.android.synthetic.main.activity_first.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -64,18 +71,137 @@ class FirstActivity : BaseActivity() {
     }
 
     var temp = 1
-    var executor: ExecutorService = Executors.newSingleThreadExecutor { r -> Thread(r, "test_thread") }
+    var executor: ExecutorService = Executors.newSingleThreadExecutor { r ->
+        Thread(
+            r,
+            "test_thread_${System.currentTimeMillis()}"
+        )
+    }
+
     fun test() {
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             Thread({
                 "${Thread.currentThread().name} run $temp ".log()
             }, "test_${temp++}").start()
-        }
+        }*/
         /*for (i in 1..10) {
             executor.execute {
                 "${Thread.currentThread().name} run $i ".log()
             }
         }*/
+        GlobalScope.launch {
+            var pro = 5
+            withContext(Dispatchers.Main) {
+                progress.setMaxProgress(60)
+                progress.progress = pro
+                while (pro < 100) {
+                    delay(1000)
+                    pro += 5
+                    progress.progress = pro
+                }
+            }
+        }
+        GlobalScope.launch {
+            var host =
+                Uri.parse("https://img-res.mejiaoyou.com/20200211002139390_bs2_format.png?ips_thumbnail/4/1/w/200/h/200")
+            host.host
+
+            var datas = mutableListOf<String>()
+            datas.add(("hello 1"))
+            datas.add(("hello 2"))
+            datas.add(("hello 3"))
+
+            var realSize = datas.size
+
+            datas.add(datas[0])
+            datas.add(0, datas[realSize - 1])
+            datas.size
+        }
+        if (count++ % 2 == 0) {
+            playAnimRight()
+        } else {
+            playAnimLeft()
+        }
+    }
+
+    var count = 0
+
+    val animDuration = 100L
+    var scaleSize = 1.33f
+    var animSet: AnimatorSet = AnimatorSet()
+
+    fun playAnim() {
+        var anim1: ObjectAnimator =
+            ObjectAnimator.ofFloat(proBg2, "scaleX", scaleSize).setDuration(animDuration)
+        var anim2: ObjectAnimator =
+            ObjectAnimator.ofFloat(proBg2, "scaleY", scaleSize).setDuration(animDuration)
+
+        var anim3: ObjectAnimator =
+            ObjectAnimator.ofFloat(proBg2, "scaleX", 1f).setDuration(animDuration)
+        var anim4: ObjectAnimator =
+            ObjectAnimator.ofFloat(proBg2, "scaleY", 1f).setDuration(animDuration)
+        anim3.startDelay = animDuration
+        anim4.startDelay = animDuration
+        animSet.cancel()
+        animSet.playTogether(anim1, anim2, anim3, anim4)
+        animSet.setDuration(animDuration * 2).start()
+    }
+
+    fun playAnimRight() {
+        flRight.visibility = View.VISIBLE
+        (proBg2.layoutParams as RelativeLayout.LayoutParams).let {
+            it.marginStart = 0
+            it.marginEnd = 10.dp2px
+            it.removeRule(RelativeLayout.ALIGN_PARENT_LEFT)
+            it.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
+        }
+        flRight.visibility = View.VISIBLE
+        var anim1: ObjectAnimator =
+            ObjectAnimator.ofFloat(tvRight, "translationX", 1080f - 75.dp2px, 0f)
+                .setDuration(2000)
+        anim1.start()
+        anim1.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                flRight.visibility = View.GONE
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+        })
+    }
+
+    fun playAnimLeft() {
+        flLeft.visibility = View.VISIBLE
+        (proBg2.layoutParams as RelativeLayout.LayoutParams).let {
+            it.marginStart = 10.dp2px
+            it.marginEnd = 0
+            it.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+            it.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE)
+        }
+        var anim1: ObjectAnimator =
+            ObjectAnimator.ofFloat(tvLeft, "translationX", -1080f + 75.dp2px.toFloat(), 0f)
+                .setDuration(2000)
+        anim1.start()
+        anim1.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                flLeft.visibility = View.GONE
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +209,7 @@ class FirstActivity : BaseActivity() {
         setContentView(R.layout.activity_first)
         tvText.setOnClickListener {
             //onClick()
-            Glide.get(this).clearMemory()
+            //Glide.get(this).clearMemory()
             ToastUtils.showToast(this, "click${index++}", Toast.LENGTH_SHORT)
             test()
         }
@@ -115,8 +241,10 @@ class FirstActivity : BaseActivity() {
         layoutRecharge.visibility = View.VISIBLE
         var x = layoutRecharge.translationX
         log("x=$x")
-        val animator: ObjectAnimator = ObjectAnimator.ofFloat(layoutRecharge, "translationX",
-            screenWidth.toFloat(), 0f)
+        val animator: ObjectAnimator = ObjectAnimator.ofFloat(
+            layoutRecharge, "translationX",
+            screenWidth.toFloat(), 0f
+        )
         animator.setDuration(1000)
         animator.start()
     }
