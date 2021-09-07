@@ -25,4 +25,5 @@
 
     <color name="shape_color1">#ffffffff</color>
     <color name="shape_color2">#ffFFD729</color>
+    <color name="white50">#7fffffff</color>
 </resources>

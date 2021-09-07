@@ -7,6 +7,9 @@
         <entry key="app/src/main/res/drawable/shape_bg_new_user_gift_dialog.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/drawable/shape_recharge_success_join.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/layout/activity_first.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/hot_line_creation_page.xml" value="0.16851664984863773" />
+        <entry key="app/src/main/res/layout/recycle_pager_activity.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/recycle_pager_item.xml" value="0.20104166666666667" />
       </map>
     </option>
   </component>

@@ -122,6 +122,7 @@
 
         <activity android:name=".activity.DialogAnimationActivity">
         </activity>
+        <activity android:name=".activity.PagerSnapHelperActivity" />
     </application>
 
 </manifest>

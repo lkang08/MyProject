@@ -3,6 +3,7 @@ package com.lk.myproject.activity
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -234,6 +235,9 @@ class FirstActivity : BaseActivity() {
             //Glide.get(this).clearMemory()
             ToastUtils.showToast(this, "click${index++}", Toast.LENGTH_SHORT)
             test()
+        }
+        tvToPager.setOnClickListener {
+            startActivity(Intent(this, PagerSnapHelperActivity::class.java))
         }
         Glide.with(this)
             .load(FULL_HOUSE_BG)
