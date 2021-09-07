@@ -148,7 +148,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@color/transparent"
+        android:id="@+id/layout2"
+        android:background="@color/btn_cancel_color"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress">
@@ -213,5 +214,15 @@
             android:src="@drawable/icon_back" />
 
     </RelativeLayout>
+
+    <ImageView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout2"
+        android:id="@+id/ivAnim"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/anim_dynamic_praise_click" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.lk.myproject.activity
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.drawable.AnimationDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -117,6 +118,18 @@ class FirstActivity : BaseActivity() {
             datas.add(0, datas[realSize - 1])
             datas.size
         }
+        ivAnim.drawable?.takeIf {
+            it is AnimationDrawable
+        }?.let {
+            (it as AnimationDrawable).let { anim ->
+                anim.start()
+                /*if (anim.isRunning) {
+                    anim.stop()
+                } else {
+                    anim.start()
+                }*/
+            }
+        }
         if (count++ % 2 == 0) {
             playAnimRight()
         } else {
@@ -147,6 +160,13 @@ class FirstActivity : BaseActivity() {
         animSet.setDuration(animDuration * 2).start()
     }
 
+    fun clearLayoutRule() {
+        (proBg2.layoutParams as RelativeLayout.LayoutParams).let {
+            it.removeRule(RelativeLayout.ALIGN_PARENT_LEFT)
+            it.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+        }
+    }
+
     fun playAnimRight() {
         flRight.visibility = View.VISIBLE
         (proBg2.layoutParams as RelativeLayout.LayoutParams).let {
@@ -166,6 +186,7 @@ class FirstActivity : BaseActivity() {
 
             override fun onAnimationEnd(animation: Animator?) {
                 flRight.visibility = View.GONE
+                clearLayoutRule()
             }
 
             override fun onAnimationCancel(animation: Animator?) {
@@ -194,6 +215,7 @@ class FirstActivity : BaseActivity() {
 
             override fun onAnimationEnd(animation: Animator?) {
                 flLeft.visibility = View.GONE
+                clearLayoutRule()
             }
 
             override fun onAnimationCancel(animation: Animator?) {

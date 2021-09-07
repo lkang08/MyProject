@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0000"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0001"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0002"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0003"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0004"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0005"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0006"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0007"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0008"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0009"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0010"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0011"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0012"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0013"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0014"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0015"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0016"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0017"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0018"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0019"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0020"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0021"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0022"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0023"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0024"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/bg_dynamic_praise_0025"
+        android:duration="50" />
+</animation-list>
