@@ -1,100 +1,87 @@
-package com.lk.myproject.horizontalpage.view;
+package com.lk.myproject.horizontalpage.view
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.R
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Rect
+import android.graphics.drawable.Drawable
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * This class is from the v7 samples of the Android SDK. It's not by me!
- * <p/>
+ *
+ *
  * See the license above for details.
  */
-public class DividerItemDecoration extends RecyclerView.ItemDecoration {
-
-    private static final int[] ATTRS = new int[]{
-            android.R.attr.listDivider
-    };
-
-    public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
-
-    public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
-
-    private Drawable mDivider;
-
-    private int mOrientation;
-
-    public DividerItemDecoration(Context context, int orientation) {
-        final TypedArray a = context.obtainStyledAttributes(ATTRS);
-        mDivider = a.getDrawable(0);
-        a.recycle();
-        setOrientation(orientation);
+class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.ItemDecoration() {
+    private val mDivider: Drawable
+    private var mOrientation = 0
+    fun setOrientation(orientation: Int) {
+        require(!(orientation != HORIZONTAL_LIST && orientation != VERTICAL_LIST)) { "invalid orientation" }
+        mOrientation = orientation
     }
 
-    public void setOrientation(int orientation) {
-        if (orientation != HORIZONTAL_LIST && orientation != VERTICAL_LIST) {
-            throw new IllegalArgumentException("invalid orientation");
-        }
-        mOrientation = orientation;
-    }
-
-    @Override
-    public void onDraw(Canvas c, RecyclerView parent) {
-       // Log.v("recyclerview - itemdecoration", "onDraw()");
-
+    override fun onDraw(c: Canvas, parent: RecyclerView) {
+        // Log.v("recyclerview - itemdecoration", "onDraw()");
         if (mOrientation == VERTICAL_LIST) {
-            drawVertical(c, parent);
+            drawVertical(c, parent)
         } else {
-            drawHorizontal(c, parent);
-        }
-
-    }
-
-
-    public void drawVertical(Canvas c, RecyclerView parent) {
-        final int left = parent.getPaddingLeft();
-        final int right = parent.getWidth() - parent.getPaddingRight();
-
-        final int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            final View child = parent.getChildAt(i);
-            RecyclerView v = new RecyclerView(parent.getContext());
-            final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
-                    .getLayoutParams();
-            final int top = child.getBottom() + params.bottomMargin;
-            final int bottom = top + mDivider.getIntrinsicHeight();
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
+            drawHorizontal(c, parent)
         }
     }
 
-    public void drawHorizontal(Canvas c, RecyclerView parent) {
-        final int top = parent.getPaddingTop();
-        final int bottom = parent.getHeight() - parent.getPaddingBottom();
-
-        final int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            final View child = parent.getChildAt(i);
-            final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
-                    .getLayoutParams();
-            final int left = child.getRight() + params.rightMargin;
-            final int right = left + mDivider.getIntrinsicHeight();
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
+    fun drawVertical(c: Canvas?, parent: RecyclerView) {
+        val left = parent.paddingLeft
+        val right = parent.width - parent.paddingRight
+        val childCount = parent.childCount
+        for (i in 0 until childCount) {
+            val child = parent.getChildAt(i)
+            val v = RecyclerView(parent.context)
+            val params = child
+                .layoutParams as RecyclerView.LayoutParams
+            val top = child.bottom + params.bottomMargin
+            val bottom = top + mDivider.intrinsicHeight
+            mDivider.setBounds(left, top, right, bottom)
+            mDivider.draw(c)
         }
     }
 
-    @Override
-    public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
+    fun drawHorizontal(c: Canvas?, parent: RecyclerView) {
+        val top = parent.paddingTop
+        val bottom = parent.height - parent.paddingBottom
+        val childCount = parent.childCount
+        for (i in 0 until childCount) {
+            val child = parent.getChildAt(i)
+            val params = child
+                .layoutParams as RecyclerView.LayoutParams
+            val left = child.right + params.rightMargin
+            val right = left + mDivider.intrinsicHeight
+            mDivider.setBounds(left, top, right, bottom)
+            mDivider.draw(c)
+        }
+    }
+
+    override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
         if (mOrientation == VERTICAL_LIST) {
-            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+            outRect[0, 0, 0] = mDivider.intrinsicHeight
         } else {
-            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+            outRect[0, 0, mDivider.intrinsicWidth] = 0
         }
+    }
+
+    companion object {
+        private val ATTRS = intArrayOf(
+            R.attr.listDivider
+        )
+        const val HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL
+        const val VERTICAL_LIST = LinearLayoutManager.VERTICAL
+    }
+
+    init {
+        val a = context.obtainStyledAttributes(ATTRS)
+        mDivider = a.getDrawable(0)
+        a.recycle()
+        setOrientation(orientation)
     }
 }

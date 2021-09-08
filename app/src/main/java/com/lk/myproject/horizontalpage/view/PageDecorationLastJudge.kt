@@ -1,13 +1,13 @@
-package com.lk.myproject.horizontalpage.view;
+package com.lk.myproject.horizontalpage.view
 
-public interface PageDecorationLastJudge {
+interface PageDecorationLastJudge {
     /**
      * Is the last row in one page
      *
      * @param position
      * @return
      */
-    boolean isLastRow(int position);
+    fun isLastRow(position: Int): Boolean
 
     /**
      * Is the last Colum in one row;
@@ -15,7 +15,6 @@ public interface PageDecorationLastJudge {
      * @param position
      * @return
      */
-    boolean isLastColumn(int position);
-
-    boolean isPageLast(int position);
+    fun isLastColumn(position: Int): Boolean
+    fun isPageLast(position: Int): Boolean
 }
