@@ -114,7 +114,7 @@ class FlowIndicator : LinearLayout {
                 canvas.drawCircle(
                     (width / 2).toFloat(),
                     (height / 2).toFloat(),
-                    dpToPx(5f).toFloat(),
+                    dpToPx(4f).toFloat(),
                     p
                 )
             }

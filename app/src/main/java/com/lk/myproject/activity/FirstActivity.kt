@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.lk.myproject.R
 import com.lk.myproject.ext.dp2px
 import com.lk.myproject.ext.screenWidth
+import com.lk.myproject.horizontalpage.HorizontalPageActivity
 import com.lk.myproject.toast.ToastUtils
 import com.lk.myproject.utils.log
 import kotlinx.android.synthetic.main.activity_first.*
@@ -237,7 +238,8 @@ class FirstActivity : BaseActivity() {
             test()
         }
         tvToPager.setOnClickListener {
-            startActivity(Intent(this, PagerSnapHelperActivity::class.java))
+            //startActivity(Intent(this, PagerSnapHelperActivity::class.java))
+            startActivity(Intent(this, HorizontalPageActivity::class.java))
         }
         Glide.with(this)
             .load(FULL_HOUSE_BG)

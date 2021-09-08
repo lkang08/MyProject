@@ -40,7 +40,7 @@ class PagerSnapHelperAdapter//     //
         // 绑定数据到ViewHolder上
         viewHolder.itemView.tag = position
         //
-        viewHolder.mTextView.text = "$position item"
+        viewHolder.mTextView.text = "$position"
     }
 
     override fun getItemCount(): Int {

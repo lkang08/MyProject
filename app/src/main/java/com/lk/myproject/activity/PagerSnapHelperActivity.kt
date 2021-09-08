@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.lk.myproject.R
+import com.lk.myproject.ext.dp2px
 import kotlinx.android.synthetic.main.recycle_pager_activity.*
 import java.util.ArrayList
 
@@ -21,7 +23,7 @@ class PagerSnapHelperActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycle_pager_activity)
-        for (i in 1..10) {
+        for (i in 1..100) {
             mDataList.add("item$i")
         }
         // 纵向List
@@ -64,11 +66,8 @@ class PagerSnapHelperActivity : BaseActivity() {
             }
         }
         snapHelper.attachToRecyclerView(mRecyclerView)
-        // ---布局管理器---
-        val linearLayoutManager = LinearLayoutManager(this)
-        // 默认是Vertical (HORIZONTAL则为横向列表)
-        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        //
+        val linearLayoutManager = GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false)
+        //linearLayoutManager.
         mRecyclerView!!.layoutManager = linearLayoutManager
         // TODO 这么写是为了获取RecycleView的宽高
         mRecyclerView!!.viewTreeObserver.addOnGlobalLayoutListener(object :
@@ -79,7 +78,7 @@ class PagerSnapHelperActivity : BaseActivity() {
                  * 这么写是为了获取RecycleView的宽高
                  */
                 mMyadapter =
-                    PagerSnapHelperAdapter(mDataList, mRecyclerView!!.width, mRecyclerView!!.height)
+                    PagerSnapHelperAdapter(mDataList, 100.dp2px, 100.dp2px)
                 mRecyclerView!!.adapter = mMyadapter
             }
         })

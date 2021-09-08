@@ -123,6 +123,7 @@
         <activity android:name=".activity.DialogAnimationActivity">
         </activity>
         <activity android:name=".activity.PagerSnapHelperActivity" />
+        <activity android:name="com.lk.myproject.horizontalpage.HorizontalPageActivity" />
     </application>
 
 </manifest>
