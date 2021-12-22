@@ -12,6 +12,7 @@ import com.lk.myproject.R
 import com.lk.myproject.itemanimation.FadeItemAnimator
 import com.lk.myproject.itemanimation.RotateItemAnimator
 import com.lk.myproject.itemanimation.ScaleItemAnimator
+import com.lk.myproject.itemanimation.SingleSlideItemAnimator
 import com.lk.myproject.itemanimation.SlideItemAnimator
 import kotlinx.android.synthetic.main.activity_recyclerview_anim.*
 
@@ -30,8 +31,9 @@ class RecyclerViewAnimActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recyclerview_anim)
         sureUpdate.setOnClickListener {
-            dataList[0] = if (index++ % 2 == 0) oldStr else newStr
-            adapter.notifyItemChanged(0)
+            var lastId = dataList.size - 1
+            dataList[lastId] = if (index++ % 2 == 0) oldStr else newStr
+            adapter.notifyItemChanged(lastId)
         }
         sureAdd.setOnClickListener {
             dataList.add(0, newStr + index++)
@@ -43,10 +45,14 @@ class RecyclerViewAnimActivity : BaseActivity() {
                 adapter.notifyItemRemoved(0)
             }
         }
+        sureNotify.setOnClickListener {
+            adapter.notifyDataSetChanged()
+        }
+
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
-        recyclerView.itemAnimator = SlideItemAnimator()
+        recyclerView.itemAnimator = SingleSlideItemAnimator()
     }
 }
 
