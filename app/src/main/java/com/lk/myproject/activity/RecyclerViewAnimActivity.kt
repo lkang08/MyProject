@@ -12,7 +12,6 @@ import com.lk.myproject.R
 import com.lk.myproject.itemanimation.FadeItemAnimator
 import com.lk.myproject.itemanimation.RotateItemAnimator
 import com.lk.myproject.itemanimation.ScaleItemAnimator
-import com.lk.myproject.itemanimation.SingleSlideItemAnimator
 import com.lk.myproject.itemanimation.SlideItemAnimator
 import kotlinx.android.synthetic.main.activity_recyclerview_anim.*
 
@@ -52,7 +51,7 @@ class RecyclerViewAnimActivity : BaseActivity() {
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
-        recyclerView.itemAnimator = SingleSlideItemAnimator()
+        recyclerView.itemAnimator = SlideItemAnimator()
     }
 }
 
