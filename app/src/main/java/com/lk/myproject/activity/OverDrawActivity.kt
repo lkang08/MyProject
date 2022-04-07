@@ -1,17 +1,13 @@
 package com.lk.myproject.activity
 
-import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lk.myproject.R
 import com.lk.myproject.giftanim.GiftAnimationHelper
-import com.lk.myproject.giftanim.SendGiftAnimationView
 import com.lk.myproject.utils.NetWorkSpeedUtils
 import kotlinx.android.synthetic.main.activity_overdraw_main.*
 
@@ -19,7 +15,7 @@ class OverDrawActivity : BaseActivity() {
     var TAG = "OverDrawActivity"
 
     var handler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message?) {
+        override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             if (msg?.what == 100) {
                 tvSpeed.text = "当前网速：${msg?.obj?.toString()}"
@@ -37,23 +33,29 @@ class OverDrawActivity : BaseActivity() {
         Glide.with(this).load(url).into(imageView)
         var helper = GiftAnimationHelper(this)
         send?.setOnClickListener {
-            helper.showSingleGiftAnimation(v_1, send,
+            helper.showSingleGiftAnimation(
+                v_1, send,
                 190001, "http://s1.yy.com/guild/xh/p_icon/static/190001.png",
-                gift_view_holder, this, content)
+                gift_view_holder, this, content
+            )
         }
 
         send2?.setOnClickListener {
-            helper.showSingleGiftAnimation(send2, send,
+            helper.showSingleGiftAnimation(
+                send2, send,
                 190001, "http://s1.yy.com/guild/xh/p_icon/static/190001.png",
-                gift_view_holder, this, content)
+                gift_view_holder, this, content
+            )
         }
         receive?.setOnClickListener {
             separate("ab", "abcdefghijklmnopq好发挥到了饭卡水淀粉领导开发商的反馈。。。dfa。……&&^ ^") {
                 Log.d("SendGiftAnimationView", it)
             }
-            helper.showSingleGiftAnimation(v_1, send,
+            helper.showSingleGiftAnimation(
+                v_1, send,
                 190001, "http://s1.yy.com/guild/xh/p_icon/static/190001.png",
-                gift_view_holder, this, content)
+                gift_view_holder, this, content
+            )
         }
         NetWorkSpeedUtils(this, handler).startShowNetSpeed()
     }

@@ -38,6 +38,7 @@ dependencies {
     implementation 'io.supercharge:shimmerlayout:2.1.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
     implementation 'cn.yipianfengye.android:ad-library:1.0'
+    implementation 'com.github.xiaweizi:MarqueeTextView:1.0'
     //implementation "com.facebook.rebound:rebound:0.3.8"
     //json
     api 'com.alibaba:fastjson:1.2.69'
