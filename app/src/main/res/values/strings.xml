@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MyProject</string>
     <string name="nor_progress_loading">努力加载中</string>
+    <string name="string1">Scroller内部封装了滚动的操作，通过构造函数中传入插值器。可以控制起始位置和整个滚动的时间，并且通过computeScrollOffset()得到滚动动作是否结束</string>
 </resources>

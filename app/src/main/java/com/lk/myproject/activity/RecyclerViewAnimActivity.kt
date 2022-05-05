@@ -30,9 +30,10 @@ class RecyclerViewAnimActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recyclerview_anim)
         sureUpdate.setOnClickListener {
-            var lastId = dataList.size - 1
+            /*var lastId = dataList.size - 1
             dataList[lastId] = if (index++ % 2 == 0) oldStr else newStr
-            adapter.notifyItemChanged(lastId)
+            adapter.notifyItemChanged(lastId)*/
+            marquee1.startScroll()
         }
         sureAdd.setOnClickListener {
             dataList.add(0, newStr + index++)
