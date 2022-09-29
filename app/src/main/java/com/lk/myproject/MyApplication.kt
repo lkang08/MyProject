@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.os.SystemClock
 import android.util.Log
+import com.alibaba.android.arouter.launcher.ARouter
 
 class MyApplication : Application() {
     companion object {
@@ -26,5 +27,11 @@ class MyApplication : Application() {
         super.onCreate()
         app = this
         l("app onCreate")
+
+        var time = System.currentTimeMillis()
+        ARouter.openLog()
+        ARouter.openDebug()
+        ARouter.init(this)
+        Log.d("TestPerformance", "ar time: ${System.currentTimeMillis() - time}")
     }
 }

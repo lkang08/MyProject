@@ -58,6 +58,36 @@ class OverDrawActivity : BaseActivity() {
             )
         }
         NetWorkSpeedUtils(this, handler).startShowNetSpeed()
+
+        loadLineView()
+    }
+
+    private fun loadLineView() {
+        var datas = mutableListOf<Double>()
+        datas.apply {
+            add(9.0)
+            add(110.0)
+            add(12.0)
+            add(14.0)
+            add(32.0)
+            add(88.0)
+            add(22.0)
+            add(120.0)
+        }
+        var desc = mutableListOf<String>()
+        desc.apply {
+            add("9")
+            add("10")
+            add("11")
+            add("12")
+            add("13")
+            add("14")
+            add("15")
+            add("今天")
+        }
+
+        lineView.setDatas(datas, desc)
+        lineView
     }
 
     val maxLength = 4

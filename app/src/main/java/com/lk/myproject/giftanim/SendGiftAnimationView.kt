@@ -15,12 +15,8 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lk.myproject.R
-import com.lk.myproject.giftanim.SendGiftAnimationView
-import com.lk.myproject.utils.FP
-import java.util.ArrayList
 
 class SendGiftAnimationView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,
@@ -262,15 +258,6 @@ class SendGiftAnimationView @JvmOverloads constructor(
         fun onAnimationEnd()
         fun onAnimationCancel()
         fun onAnimationStop()
-    }
-
-    internal class AnimationHolder {
-        var x = 0
-        var y = 0
-        var view: View? = null
-        var scaleX = 0f
-        var scaleY = 0f
-        var index = 0
     }
 
     internal inner class MyAnimatorListenerAdapter(private var holder: AnimationHolder) :

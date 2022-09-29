@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.lk.myproject.R
+import com.lk.myproject.activity.FirstActivity.Companion.PATH
 import com.lk.myproject.itemanimation.FadeItemAnimator
 import com.lk.myproject.itemanimation.RotateItemAnimator
 import com.lk.myproject.itemanimation.ScaleItemAnimator
@@ -38,6 +40,7 @@ class RecyclerViewAnimActivity : BaseActivity() {
         sureAdd.setOnClickListener {
             dataList.add(0, newStr + index++)
             adapter.notifyItemInserted(0)
+            ARouter.getInstance().build(PATH).navigation()
         }
         sureDel.setOnClickListener {
             if (dataList.size > 0) {

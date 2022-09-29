@@ -10,9 +10,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.lk.myproject.R
+import com.lk.myproject.activity.FirstActivity.Companion.PATH
 import com.lk.myproject.ext.dp2px
 import com.lk.myproject.ext.screenWidth
 import com.lk.myproject.horizontalpage.HorizontalPageActivity
@@ -27,10 +29,12 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+@Route(path = PATH)
 class FirstActivity : BaseActivity() {
     var index = 1
 
     companion object {
+        const val PATH = "/test/firstActivity"
         var defaulUrl = "https://img-res.mejiaoyou.com/20200827222235565_bs2_format.png"
         var IMAGE = "https://img-res.mejiaoyou.com"
 
@@ -71,15 +75,17 @@ class FirstActivity : BaseActivity() {
         var APPLY_MIC_BG = IMAGE + "/20200706172605443_bs2_format.svga"
 
         var NEW_USER_RED_PACKAGE_BG = IMAGE + "/20210705153902342_bs2_format.png"
+
+        @JvmField
+        var executor: ExecutorService = Executors.newSingleThreadExecutor { r ->
+            Thread(
+                r,
+                "test_thread_${System.currentTimeMillis()}"
+            )
+        }
     }
 
     var temp = 1
-    var executor: ExecutorService = Executors.newSingleThreadExecutor { r ->
-        Thread(
-            r,
-            "test_thread_${System.currentTimeMillis()}"
-        )
-    }
 
     fun test() {
         /*GlobalScope.launch {

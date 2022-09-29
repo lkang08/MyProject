@@ -5,11 +5,13 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.lk.myproject.R
 import com.lk.myproject.utils.StatusBarUtils
 import com.lk.myproject.widget.NorProgressView
 import kotlinx.android.synthetic.main.activity_main.*
 
+@Route(path = "/test/MainActivity")
 class MainActivity : BaseActivity() {
 
     private var isStart: Boolean = false

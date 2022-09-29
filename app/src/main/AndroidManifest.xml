@@ -93,10 +93,11 @@
 
         </activity>
         <activity android:name=".activity.PermissionActivity"></activity>
-        <activity android:name=".activity.DatePickActivity"
-            tools:ignore="Instantiatable">
-        </activity>
-        <activity android:name=".activity.FirstActivity"
+        <activity
+            android:name=".activity.DatePickActivity"
+            tools:ignore="Instantiatable"></activity>
+        <activity
+            android:name=".activity.FirstActivity"
             tools:ignore="Instantiatable">
 
         </activity>
@@ -106,26 +107,35 @@
             android:theme="@style/AppCompact.Theme.Transparent.FullScreen">
 
         </activity>
-        <activity android:name=".activity.RecyclerViewActivity">
-        </activity>
 
-        <activity android:name=".activity.RecyclerViewAnimActivity"
-            android:exported="true">
+        <activity
+            android:name=".activity.CharActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppCompact.Theme.Transparent.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.RecyclerViewActivity"></activity>
+
+        <activity
+            android:name=".activity.TestLocationActivity"
+            android:exported="true"></activity>
+        <activity android:name=".activity.RecyclerViewAnimActivity">
+
+        </activity>
 
         <activity
             android:name=".activity.OverDrawActivity"
+            android:exported="true"
             android:theme="@style/AppTheme1">
 
         </activity>
 
-        <activity android:name=".activity.DialogAnimationActivity">
-        </activity>
+        <activity android:name=".activity.DialogAnimationActivity"></activity>
         <activity android:name=".activity.PagerSnapHelperActivity" />
         <activity android:name="com.lk.myproject.horizontalpage.HorizontalPageActivity" />
     </application>
