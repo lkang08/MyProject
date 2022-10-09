@@ -278,13 +278,7 @@ class LineChartView @JvmOverloads constructor(
     }
 
     private fun getTextMargin(text: String): Float {
-        var margin = when (text.length) {
-            1 -> 1.2f * mMargin10
-            2 -> 1.6f * mMargin10
-            3 -> 2.1f * mMargin10
-            else -> 2.4f * mMargin10
-        }
-        return margin
+        return mPaintText!!.measureText(text) + 6.dp2px
     }
 
     private fun drawText(canvas: Canvas) {
@@ -305,11 +299,15 @@ class LineChartView @JvmOverloads constructor(
             (yOrigin + mMargin10) / 2 + mTextSize / 2,
             mPaintText!!
         )
-        dataList.forEach {
+        dataList.forEachIndexed { index, it ->
             var length = mPaintText!!.measureText(it.date)
+            var tempX = it.x - length / 2
+            if (index == dataList.size - 1 && it.date.length == 5) { //超长处理
+                tempX -= 2.dp2px
+            }
             canvas.drawText(
                 it.date,
-                it.x - length / 2,
+                tempX,
                 (mHeight - mMargin10 + 5.dp2px).toFloat(),
                 mPaintText!!
             )
