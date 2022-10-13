@@ -58,4 +58,4 @@ fun <T> WeakReference<T>.safe(body: T.() -> Unit) {
     this.get()?.body()
 }
 
-fun <T : Any> T.log() = run { Log.d("BLLog", "Log : $this") }
+fun <T : Any> T.log() = run { Log.d("MyProject", "Log : $this") }

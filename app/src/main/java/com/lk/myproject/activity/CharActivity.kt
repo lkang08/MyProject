@@ -2,7 +2,6 @@ package com.lk.myproject.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.animation.DecelerateInterpolator
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -10,20 +9,150 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.lk.myproject.R
-import com.lk.myproject.ext.dp2px
+import com.lk.myproject.ext.log
+import com.lk.myproject.room.HotLine
+import com.lk.myproject.room.RoomDbHelper
+import com.lk.myproject.room.User
 import com.lk.myproject.widget.linechartview.ChartDataBean
 import kotlinx.android.synthetic.main.activity_char.*
 import kotlinx.android.synthetic.main.activity_overdraw_main.lineView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Date
 import java.util.Random
 
 class CharActivity : BaseActivity() {
+    var myFlow = MutableSharedFlow<String>(1)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_char)
         //loadLineView()
         //loadCharView()
         loadCharView2()
+        launch(Dispatchers.IO) {
+            "${Thread.currentThread().name} launch".log()
+            /*myFlow.collect {
+                delay(2000)
+                "${Thread.currentThread().name} flow :$it".log()
+            }*/
+        }
+        //initDatabase()
+        initDatabase2()
+    }
+
+    var hotlineId = 1
+    private fun initDatabase2() {
+        launch(Dispatchers.IO) {
+            var title = ""
+            RoomDbHelper.db.hotLineDao().all.forEach {
+                if (it.id >= hotlineId) {
+                    hotlineId = it.id + 1
+                    title = it.title
+                }
+            }
+            withContext(Dispatchers.Main) {
+                tvResult.text = "11 $hotlineId $title"
+            }
+        }
+
+        tvAdd.setOnClickListener {
+            launch(Dispatchers.IO) {
+                hotlineId++
+                var hotline = HotLine().apply {
+                    id = hotlineId
+                    title = "hotline:$hotlineId"
+                    count = 1
+                    watchTime = 1
+                    belongUserId = 1
+                    viewCount = 1
+                    startTime = 1
+                    status = 1
+                    isAttention = 1
+                    isSubscribed = 1
+                    isVideoLive = 1
+                    liveId = 1
+                }
+                hotlineId++
+                RoomDbHelper.db.hotLineDao().insertAll(hotline)
+
+                var sb = StringBuilder()
+                RoomDbHelper.db.hotLineDao().all.forEach {
+                    sb.append(it.title).append(",")
+                    withContext(Dispatchers.Main) {
+                        tvResult2.text = sb.toString()
+                    }
+                }
+            }
+        }
+        tvQuery.setOnClickListener {
+            launch(Dispatchers.IO) {
+                var sb = StringBuilder()
+                RoomDbHelper.db.userDao().all.forEach {
+                    sb.append(it.nickname).append(",")
+                    withContext(Dispatchers.Main) {
+                        tvResult2.text = sb.toString()
+                    }
+                }
+            }
+        }
+    }
+
+    private var uid = 1L
+    private fun initDatabase() {
+        launch(Dispatchers.IO) {
+            RoomDbHelper.db.userDao().all.forEach {
+                var tempUid = it.userId
+                if (tempUid >= uid) {
+                    uid = tempUid + 1
+                }
+            }
+            withContext(Dispatchers.Main) {
+                tvResult2.text = "$uid"
+            }
+        }
+        tvAdd.setOnClickListener {
+            var user = User().apply {
+                userId = uid
+                nickname = "nickname:$uid"
+            }
+            uid++
+            launch(Dispatchers.IO) {
+                RoomDbHelper.db.userDao().insertAll(user)
+
+                var sb = StringBuilder()
+                RoomDbHelper.db.userDao().all.forEach {
+                    sb.append(it.nickname).append(",")
+                    withContext(Dispatchers.Main) {
+                        tvResult2.text = sb.toString()
+                    }
+                }
+            }
+        }
+        tvQuery.setOnClickListener {
+            launch(Dispatchers.IO) {
+                var sb = StringBuilder()
+                RoomDbHelper.db.userDao().all.forEach {
+                    sb.append(it.nickname).append(",")
+                    withContext(Dispatchers.Main) {
+                        tvResult2.text = sb.toString()
+                    }
+                }
+            }
+        }
+    }
+
+    var count = 0
+    private fun click() {
+        lineChartView.startAnim(2500)
+        for (i in 0..3) {
+            launch {
+                myFlow.emit((++count).toString())
+            }
+        }
     }
 
     private fun loadCharView2() {
@@ -41,11 +170,11 @@ class CharActivity : BaseActivity() {
         var d = Date(time)
         d.day
         listValues.apply {
-            add(ChartDataBean(0, visitorNum = 1, greetingCount = 1, strikeUp = 30, date = "25"))
-            add(ChartDataBean(0, visitorNum = 1, greetingCount = 1, strikeUp = 30, date = "1"))
+            add(ChartDataBean(110, visitorNum = 1, greetingCount = 1, strikeUp = 30, date = "25"))
+            add(ChartDataBean(60, visitorNum = 1, greetingCount = 1, strikeUp = 30, date = "1"))
             add(
                 ChartDataBean(
-                    0,
+                    10,
                     visitorNum = 11,
                     greetingCount = 11,
                     strikeUp = 10,
@@ -55,7 +184,7 @@ class CharActivity : BaseActivity() {
             )
             add(
                 ChartDataBean(
-                    0,
+                    20,
                     visitorNum = 12,
                     greetingCount = 100,
                     strikeUp = 0,
@@ -65,7 +194,7 @@ class CharActivity : BaseActivity() {
             add(ChartDataBean(0, visitorNum = 14, greetingCount = 1, strikeUp = 30, date = "29"))
             add(
                 ChartDataBean(
-                    0,
+                    30,
                     visitorNum = 15,
                     greetingCount = 14,
                     strikeUp = 130,
@@ -109,7 +238,7 @@ class CharActivity : BaseActivity() {
         }
 
         tvStart.setOnClickListener {
-            lineChartView.startAnim(2500)
+            click()
         }
     }
 

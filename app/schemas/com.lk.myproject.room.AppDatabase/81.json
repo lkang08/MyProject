@@ -1,0 +1,442 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 81,
+    "identityHash": "a1aa3de450f8a5cbbf1e7ddcb929b7db",
+    "entities": [
+      {
+        "tableName": "User",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER, `bilinId` INTEGER, `nickname` TEXT, `sex` INTEGER, `sexOrientation` INTEGER, `birthday` TEXT, `smallUrl` TEXT, `bigUrl` TEXT, `myBigHeadUrl` TEXT, `mySmallHeadUrl` TEXT, `gifUrl` TEXT, `dynamicHeadgearUrl` TEXT, `city` TEXT, `ipZone` TEXT, `sign` TEXT, `career` TEXT, `like` TEXT, `notLike` TEXT, `introMe` TEXT, `classInfo` TEXT, `className` TEXT, `collectedBadgeTypeNum` INTEGER, `glamourValue` INTEGER, `numOfWings` INTEGER, `totalCallTime` INTEGER, `numOfFlower` INTEGER, `isCanCallDirect` INTEGER, `newAge` TEXT, `dynamicNum` INTEGER, `rcurl` TEXT, `rctopic` TEXT, `lastLoginTime` INTEGER, `tagIds` TEXT, `industry` TEXT, `callLikes` INTEGER, `callNotLikes` INTEGER, `headgearUrl` TEXT, `memberType` INTEGER, `canUploadGif` INTEGER, `memberIcon` TEXT, `fans` INTEGER, `attentions` INTEGER, `headVersion` INTEGER, `isNewUser` INTEGER, `hasMaster` INTEGER, `photoWall` TEXT, PRIMARY KEY(`userId`))",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "bilinId",
+            "columnName": "bilinId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nickname",
+            "columnName": "nickname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sex",
+            "columnName": "sex",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sexOrientation",
+            "columnName": "sexOrientation",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "birthday",
+            "columnName": "birthday",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "smallUrl",
+            "columnName": "smallUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "bigUrl",
+            "columnName": "bigUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "myBigHeadUrl",
+            "columnName": "myBigHeadUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mySmallHeadUrl",
+            "columnName": "mySmallHeadUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gifUrl",
+            "columnName": "gifUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dynamicHeadgearUrl",
+            "columnName": "dynamicHeadgearUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ipZone",
+            "columnName": "ipZone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sign",
+            "columnName": "sign",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "career",
+            "columnName": "career",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "like",
+            "columnName": "like",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notLike",
+            "columnName": "notLike",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "introMe",
+            "columnName": "introMe",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "classInfo",
+            "columnName": "classInfo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "className",
+            "columnName": "className",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "collectedBadgeTypeNum",
+            "columnName": "collectedBadgeTypeNum",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "glamourValue",
+            "columnName": "glamourValue",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "numOfWings",
+            "columnName": "numOfWings",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalCallTime",
+            "columnName": "totalCallTime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "numOfFlower",
+            "columnName": "numOfFlower",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isCanCallDirect",
+            "columnName": "isCanCallDirect",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "age",
+            "columnName": "newAge",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dynamicNum",
+            "columnName": "dynamicNum",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rcurl",
+            "columnName": "rcurl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rctopic",
+            "columnName": "rctopic",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastLoginTime",
+            "columnName": "lastLoginTime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tagIds",
+            "columnName": "tagIds",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "industry",
+            "columnName": "industry",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "callLikes",
+            "columnName": "callLikes",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "callNotLikes",
+            "columnName": "callNotLikes",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "headgearUrl",
+            "columnName": "headgearUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "memberType",
+            "columnName": "memberType",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "canUploadGif",
+            "columnName": "canUploadGif",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "memberIcon",
+            "columnName": "memberIcon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fans",
+            "columnName": "fans",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "attentions",
+            "columnName": "attentions",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "headVersion",
+            "columnName": "headVersion",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isNewUser",
+            "columnName": "isNewUser",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hasMaster",
+            "columnName": "hasMaster",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "photoWall",
+            "columnName": "photoWall",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "user_userId_idx",
+            "unique": true,
+            "columnNames": [
+              "userId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `user_userId_idx` ON `${TABLE_NAME}` (`userId`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "hotline",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `belongUserId` INTEGER, `liveId` INTEGER, `title` TEXT, `detailIntroduction` TEXT, `backgroudUrl` TEXT, `mediaUrl` TEXT, `count` INTEGER, `viewCount` INTEGER, `status` INTEGER, `city` TEXT, `province` TEXT, `startTime` INTEGER, `watchTime` INTEGER, `isAttention` INTEGER, `isSubscribed` INTEGER, `jsonStringHostUser` TEXT, `jsonStringShareDetail` TEXT, `isVideoLive` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "belongUserId",
+            "columnName": "belongUserId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "liveId",
+            "columnName": "liveId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "detailIntroduction",
+            "columnName": "detailIntroduction",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "backgroudUrl",
+            "columnName": "backgroudUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mediaUrl",
+            "columnName": "mediaUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "viewCount",
+            "columnName": "viewCount",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "province",
+            "columnName": "province",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "startTime",
+            "columnName": "startTime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "watchTime",
+            "columnName": "watchTime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isAttention",
+            "columnName": "isAttention",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isSubscribed",
+            "columnName": "isSubscribed",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "jsonStringHostUser",
+            "columnName": "jsonStringHostUser",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "jsonStringShareDetail",
+            "columnName": "jsonStringShareDetail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isVideoLive",
+            "columnName": "isVideoLive",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a1aa3de450f8a5cbbf1e7ddcb929b7db')"
+    ]
+  }
+}

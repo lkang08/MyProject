@@ -14,6 +14,13 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        //指定room.schemaLocation生成的文件路径, kotlin环境 （两者选一，看项目环境）
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
+
         javaCompileOptions {
             annotationProcessorOptions { //需要使用的module必须加
                 it.argument('AROUTER_MODULE_NAME', project.getName())
@@ -52,6 +59,14 @@ dependencies {
     implementation 'cn.yipianfengye.android:ad-library:1.0'
     implementation 'com.github.xiaweizi:MarqueeTextView:1.0'
     //implementation "com.facebook.rebound:rebound:0.3.8"
+
+    //lifecycle
+    /*api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    // ViewModel
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"*/
+
     //json
     api 'com.alibaba:fastjson:1.2.69'
     api 'com.ms-square:expandableTextView:0.1.4'
@@ -66,6 +81,12 @@ dependencies {
     implementation 'com.lixs.charts:charts:1.0.7'
 
     implementation 'com.github.AAChartModel:AAChartCore-Kotlin:-SNAPSHOT'
+
+    //room begin
+    //implementation ("androidx.room:room-common:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    //room end
 }
 repositories {
     mavenCentral()

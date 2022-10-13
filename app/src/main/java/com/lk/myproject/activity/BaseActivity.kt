@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import java.util.concurrent.CancellationException
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.SupervisorJob
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), CoroutineScope by
+CoroutineScope(SupervisorJob() + Dispatchers.Main) {
     var test: String = "BaseActivity"
 
     //Kotlin 协程作用域，防止内存泄漏
