@@ -19,9 +19,17 @@ object RoomDbHelper {
         override fun migrate(database: SupportSQLiteDatabase) {
         }
     }
+    private val MIGRATION_81_82 = object : Migration(81, 82) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL(
+                "ALTER TABLE hotline "
+                    + " ADD COLUMN encrypt TEXT"
+            );
+        }
+    }
     var db = Room.databaseBuilder(
         MyApplication.app,
         AppDatabase::class.java, "bl_hujiao_db"
-    ).addMigrations(MIGRATION_79_80, MIGRATION_80_81)
+    ).addMigrations(MIGRATION_79_80, MIGRATION_80_81, MIGRATION_81_82)
         .build()
 }

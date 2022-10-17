@@ -13,11 +13,11 @@ import com.lk.myproject.ext.log
 import com.lk.myproject.room.HotLine
 import com.lk.myproject.room.RoomDbHelper
 import com.lk.myproject.room.User
+import com.lk.myproject.room.encrypt.StringEntry
 import com.lk.myproject.widget.linechartview.ChartDataBean
 import kotlinx.android.synthetic.main.activity_char.*
 import kotlinx.android.synthetic.main.activity_overdraw_main.lineView
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -75,6 +75,7 @@ class CharActivity : BaseActivity() {
                     isSubscribed = 1
                     isVideoLive = 1
                     liveId = 1
+                    encrypt = StringEntry(title)
                 }
                 hotlineId++
                 RoomDbHelper.db.hotLineDao().insertAll(hotline)
@@ -91,10 +92,12 @@ class CharActivity : BaseActivity() {
         tvQuery.setOnClickListener {
             launch(Dispatchers.IO) {
                 var sb = StringBuilder()
-                RoomDbHelper.db.userDao().all.forEach {
-                    sb.append(it.nickname).append(",")
-                    withContext(Dispatchers.Main) {
-                        tvResult2.text = sb.toString()
+                RoomDbHelper.db.hotLineDao().all.forEach {
+                    if (it.id > 33) {
+                        sb.append(it.encrypt.value).append(",")
+                        withContext(Dispatchers.Main) {
+                            tvResult2.text = sb.toString()
+                        }
                     }
                 }
             }

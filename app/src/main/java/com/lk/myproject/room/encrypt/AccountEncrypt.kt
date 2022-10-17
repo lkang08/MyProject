@@ -14,6 +14,9 @@ class AccountEncrypt {
 
     companion object {
         const val TAG = "AccountEncrypt"
+
+        @JvmStatic
+        var accountEncrypt = AccountEncrypt()
     }
 
     fun getIdentifyEncryptContent(encryptContent: String): String {

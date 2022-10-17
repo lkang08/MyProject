@@ -215,20 +215,20 @@ public class User implements Serializable {
         this.rctopic = rctopic;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public long getBilinId() {
+    public Long getBilinId() {
         return bilinId == null ? 0 : bilinId.longValue();
     }
 
-    public void setBilinId(long bilinId) {
-        this.bilinId = new Long(bilinId);
+    public void setBilinId(Long bilinId) {
+        this.bilinId = bilinId;
     }
 
     public String getNickname() {

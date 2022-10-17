@@ -1,5 +1,8 @@
 package com.lk.myproject.room;
 
+import com.lk.myproject.room.encrypt.StringConverter;
+import com.lk.myproject.room.encrypt.StringEntry;
+
 import java.io.Serializable;
 
 import androidx.annotation.Nullable;
@@ -7,8 +10,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 @Entity(tableName = "hotline")
+@TypeConverters(StringConverter.class)
 public class HotLine implements Serializable {
 
     public static final String BELONG_USER_ID = "belongUserId";
@@ -78,6 +83,9 @@ public class HotLine implements Serializable {
 
     @Nullable
     private Integer isVideoLive; //是否是视频直播 0否1是
+
+    @ColumnInfo
+    private StringEntry encrypt = new StringEntry("");
 
     @Ignore
     private String notice;
@@ -307,5 +315,13 @@ public class HotLine implements Serializable {
 
     public void setIsVideoLive(int isVideoLive) {
         this.isVideoLive = isVideoLive;
+    }
+
+    public StringEntry getEncrypt() {
+        return encrypt;
+    }
+
+    public void setEncrypt(StringEntry encrypt) {
+        this.encrypt = encrypt;
     }
 }
