@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/shape_bg_gift_chains_tip_left.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/shape_bg_new_user_gift_dialog.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/drawable/shape_recharge_success_join.xml" value="0.20520833333333333" />
+        <entry key="app/src/main/res/layout/activity_char.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_first.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_horizontal_page.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/activity_recyclerview_anim.xml" value="0.14628623188405798" />
@@ -62,7 +63,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
