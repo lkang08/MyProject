@@ -113,14 +113,20 @@
             android:exported="true"
             android:launchMode="singleInstance"
             android:theme="@style/AppCompact.Theme.Transparent.FullScreen">
+
+        </activity>
+        <activity
+            android:name=".robust.RobustActivity"
+            android:exported="true"
+            android:theme="@style/AppCompact.Theme.Transparent.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RecyclerViewActivity"></activity>
 
+        <activity android:name=".activity.RecyclerViewActivity"></activity>
         <activity
             android:name=".activity.TestLocationActivity"
             android:exported="true"></activity>
