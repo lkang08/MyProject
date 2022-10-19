@@ -1,18 +1,23 @@
 package com.lk.myproject.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lk.myproject.R
-import com.lk.myproject.itemanimation.FadeItemAnimator
-import com.lk.myproject.itemanimation.RotateItemAnimator
-import com.lk.myproject.itemanimation.ScaleItemAnimator
+import com.lk.myproject.ext.log
 import com.lk.myproject.itemanimation.SlideItemAnimator
+import com.lk.myproject.robust.PatchManipulateImp
+import com.lk.myproject.robust.RobustCallBackSample
+import com.lk.myproject.toast.ToastUtils
+import com.meituan.robust.PatchExecutor
+import com.meituan.robust.patch.RobustModify
 import kotlinx.android.synthetic.main.activity_recyclerview_anim.*
 
 class RecyclerViewAnimActivity : BaseActivity() {
@@ -39,12 +44,16 @@ class RecyclerViewAnimActivity : BaseActivity() {
             adapter.notifyItemInserted(0)
         }
         sureDel.setOnClickListener {
-            if (dataList.size > 0) {
+            RobustModify.modify()
+            ToastUtils.showToast(this, "####modify hello world", Toast.LENGTH_SHORT)
+            Log.d("RobustCallBack", "###modify hello world")
+            if (dataList.size > 2) {
                 dataList.removeAt(0)
                 adapter.notifyItemRemoved(0)
             }
         }
         sureNotify.setOnClickListener {
+            runRobust()
             adapter.notifyDataSetChanged()
         }
 
@@ -52,6 +61,10 @@ class RecyclerViewAnimActivity : BaseActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = SlideItemAnimator()
+    }
+
+    private fun runRobust() {
+        PatchExecutor(applicationContext, PatchManipulateImp(), RobustCallBackSample()).start()
     }
 }
 
