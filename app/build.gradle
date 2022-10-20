@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+//制作补丁时将这个打开，auto-patch-plugin紧跟着com.android.application
+//apply plugin: 'auto-patch-plugin'
+apply plugin: 'robust'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -26,6 +29,10 @@ android {
                 it.argument('AROUTER_MODULE_NAME', project.getName())
             }
         }
+    }
+    packagingOptions {
+        exclude "**/module-info.class"
+        exclude 'META-INF/versions/9/module-info'
     }
     buildTypes {
         release {
@@ -87,6 +94,8 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     //room end
+
+    implementation("com.duowan.robust:robust:${robust_version}")
 }
 repositories {
     mavenCentral()
