@@ -30,6 +30,6 @@ object RoomDbHelper {
     var db = Room.databaseBuilder(
         MyApplication.app,
         AppDatabase::class.java, "bl_hujiao_db"
-    ).addMigrations(MIGRATION_79_80, MIGRATION_80_81, MIGRATION_81_82)
+    ).addMigrations()
         .build()
 }

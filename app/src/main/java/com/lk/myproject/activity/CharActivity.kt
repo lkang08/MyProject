@@ -13,7 +13,6 @@ import com.lk.myproject.ext.log
 import com.lk.myproject.room.HotLine
 import com.lk.myproject.room.RoomDbHelper
 import com.lk.myproject.room.User
-import com.lk.myproject.room.encrypt.StringEntry
 import com.lk.myproject.widget.linechartview.ChartDataBean
 import kotlinx.android.synthetic.main.activity_char.*
 import kotlinx.android.synthetic.main.activity_overdraw_main.lineView
@@ -49,9 +48,8 @@ class CharActivity : BaseActivity() {
         launch(Dispatchers.IO) {
             var title = ""
             RoomDbHelper.db.hotLineDao().all.forEach {
-                if (it.id >= hotlineId) {
-                    hotlineId = it.id + 1
-                    title = it.title
+                if (it.id!! >= hotlineId) {
+                    hotlineId = it.id!! + 1
                 }
             }
             withContext(Dispatchers.Main) {
@@ -66,23 +64,13 @@ class CharActivity : BaseActivity() {
                     id = hotlineId
                     title = "hotline:$hotlineId"
                     count = 1
-                    watchTime = 1
-                    belongUserId = 1
-                    viewCount = 1
-                    startTime = 1
-                    status = 1
-                    isAttention = 1
-                    isSubscribed = 1
-                    isVideoLive = 1
-                    liveId = 1
-                    encrypt = StringEntry(title)
                 }
                 hotlineId++
                 RoomDbHelper.db.hotLineDao().insertAll(hotline)
 
                 var sb = StringBuilder()
                 RoomDbHelper.db.hotLineDao().all.forEach {
-                    sb.append(it.title).append(",")
+                    sb.append(it.id).append(",")
                     withContext(Dispatchers.Main) {
                         tvResult2.text = sb.toString()
                     }
@@ -93,8 +81,8 @@ class CharActivity : BaseActivity() {
             launch(Dispatchers.IO) {
                 var sb = StringBuilder()
                 RoomDbHelper.db.hotLineDao().all.forEach {
-                    if (it.id > 33) {
-                        sb.append(it.encrypt.value).append(",")
+                    if (it.id!! > 33) {
+                        sb.append(it.id).append(",")
                         withContext(Dispatchers.Main) {
                             tvResult2.text = sb.toString()
                         }
@@ -109,8 +97,10 @@ class CharActivity : BaseActivity() {
         launch(Dispatchers.IO) {
             RoomDbHelper.db.userDao().all.forEach {
                 var tempUid = it.userId
-                if (tempUid >= uid) {
-                    uid = tempUid + 1
+                if (tempUid != null) {
+                    if (tempUid >= uid) {
+                        uid = tempUid + 1
+                    }
                 }
             }
             withContext(Dispatchers.Main) {
@@ -120,7 +110,6 @@ class CharActivity : BaseActivity() {
         tvAdd.setOnClickListener {
             var user = User().apply {
                 userId = uid
-                nickname = "nickname:$uid"
             }
             uid++
             launch(Dispatchers.IO) {
@@ -128,7 +117,7 @@ class CharActivity : BaseActivity() {
 
                 var sb = StringBuilder()
                 RoomDbHelper.db.userDao().all.forEach {
-                    sb.append(it.nickname).append(",")
+                    sb.append(it.userId).append(",")
                     withContext(Dispatchers.Main) {
                         tvResult2.text = sb.toString()
                     }
@@ -139,7 +128,7 @@ class CharActivity : BaseActivity() {
             launch(Dispatchers.IO) {
                 var sb = StringBuilder()
                 RoomDbHelper.db.userDao().all.forEach {
-                    sb.append(it.nickname).append(",")
+                    sb.append(it.userId).append(",")
                     withContext(Dispatchers.Main) {
                         tvResult2.text = sb.toString()
                     }
