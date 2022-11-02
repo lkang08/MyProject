@@ -17,7 +17,7 @@ class PagingItemDecoration(context: Context, pageDecorationLastJudge: PageDecora
         drawVertical(c, parent)
     }
 
-    fun drawHorizontal(c: Canvas?, parent: RecyclerView) {
+    fun drawHorizontal(c: Canvas, parent: RecyclerView) {
         val childCount = parent.childCount
         for (i in 0 until childCount) {
             val child = parent.getChildAt(i)
@@ -33,7 +33,7 @@ class PagingItemDecoration(context: Context, pageDecorationLastJudge: PageDecora
         }
     }
 
-    fun drawVertical(c: Canvas?, parent: RecyclerView) {
+    fun drawVertical(c: Canvas, parent: RecyclerView) {
         val childCount = parent.childCount
         for (i in 0 until childCount) {
             val child = parent.getChildAt(i)
@@ -76,7 +76,7 @@ class PagingItemDecoration(context: Context, pageDecorationLastJudge: PageDecora
         requireNotNull(pageDecorationLastJudge) { "pageDecorationLastJudge must be no null" }
         mPageDecorationLastJudge = pageDecorationLastJudge
         val a = context.obtainStyledAttributes(ATTRS)
-        mDivider = a.getDrawable(0)
+        mDivider = a.getDrawable(0)!!
         a.recycle()
     }
 }

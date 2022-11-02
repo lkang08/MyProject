@@ -12,14 +12,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lk.myproject.R
-import com.lk.myproject.ext.log
 import com.lk.myproject.itemanimation.SlideItemAnimator
 import com.lk.myproject.robust.PatchManipulateImp
 import com.lk.myproject.robust.PermissionUtils
 import com.lk.myproject.robust.RobustCallBackSample
 import com.lk.myproject.toast.ToastUtils
 import com.meituan.robust.PatchExecutor
-import com.meituan.robust.patch.RobustModify
 import kotlinx.android.synthetic.main.activity_recyclerview_anim.*
 
 class RecyclerViewAnimActivity : BaseActivity() {
@@ -46,7 +44,7 @@ class RecyclerViewAnimActivity : BaseActivity() {
             adapter.notifyItemInserted(0)
         }
         sureDel.setOnClickListener {
-            RobustModify.modify()
+            //RobustModify.modify()
             ToastUtils.showToast(this, "####modify hello world", Toast.LENGTH_SHORT)
             Log.d("RobustCallBack", "###modify hello world")
             if (dataList.size > 2) {

@@ -22,11 +22,13 @@ import java.util.Calendar
 
 //type = 0 充值 1消费
 class DateDialog(
-    context: Context?, themeResId: Int, var type: Int = 0,
+    context: Context, themeResId: Int, var type: Int = 0,
     var originFromData: String = "", var originToData: String = ""
 ) : Dialog
-(context,
-    themeResId) {
+    (
+    context,
+    themeResId
+) {
     val TAG = "PurseDateDialog"
     var toDate: MyDate
     var fromDate: MyDate
