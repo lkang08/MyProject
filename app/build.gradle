@@ -1,17 +1,17 @@
 apply plugin: 'com.android.application'
 //制作补丁时将这个打开，auto-patch-plugin紧跟着com.android.application
-apply plugin: 'auto-patch-plugin'
+//apply plugin: 'auto-patch-plugin'
 apply plugin: 'robust'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion = "${compile_sdk_version}" as Integer
     defaultConfig {
         applicationId "com.lk.myproject"
         minSdkVersion 23
-        targetSdkVersion 28
+        targetSdkVersion "${target_sdk_version}" as Integer
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

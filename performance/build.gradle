@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion = "${compile_sdk_version}" as Integer
 
     defaultConfig {
         applicationId "com.example.performance"
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion "${target_sdk_version}" as Integer
         versionCode 1
         versionName "1.0"
 
