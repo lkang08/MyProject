@@ -19,7 +19,7 @@ class OverDrawActivity : BaseActivity() {
     var TAG = "OverDrawActivity"
 
     var handler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message?) {
+        override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             if (msg?.what == 100) {
                 tvSpeed.text = "当前网速：${msg?.obj?.toString()}"

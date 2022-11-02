@@ -23,7 +23,7 @@ import com.lk.myproject.utils.FP
 import java.util.ArrayList
 
 class SendGiftAnimationView @JvmOverloads constructor(
-    context: Context?, attrs: AttributeSet? = null,
+    context: Context, attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : FrameLayout(context, attrs, defStyle), AnimatorUpdateListener {
 
