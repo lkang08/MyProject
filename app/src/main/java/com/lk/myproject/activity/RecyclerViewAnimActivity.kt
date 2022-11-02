@@ -1,5 +1,6 @@
 package com.lk.myproject.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.lk.myproject.R
 import com.lk.myproject.ext.log
 import com.lk.myproject.itemanimation.SlideItemAnimator
 import com.lk.myproject.robust.PatchManipulateImp
+import com.lk.myproject.robust.PermissionUtils
 import com.lk.myproject.robust.RobustCallBackSample
 import com.lk.myproject.toast.ToastUtils
 import com.meituan.robust.PatchExecutor
@@ -64,7 +66,21 @@ class RecyclerViewAnimActivity : BaseActivity() {
     }
 
     private fun runRobust() {
-        PatchExecutor(applicationContext, PatchManipulateImp(), RobustCallBackSample()).start()
+        if (PermissionUtils.isGrantSDCardReadPermission(this)) {
+            PatchExecutor(applicationContext, PatchManipulateImp(), RobustCallBackSample()).start()
+        } else {
+            PermissionUtils.requestSDCardReadPermission(this, 1000)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1000) {
+            Log.d(
+                "RobustCallBack", "has permission:" + PermissionUtils
+                    .isGrantSDCardReadPermission(this)
+            )
+        }
     }
 }
 
