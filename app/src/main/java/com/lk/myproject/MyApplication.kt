@@ -10,7 +10,10 @@ import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultReactNativeHost
+import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
+import com.lk.myproject.reactnative.ExampleReactNativePackage
+import java.util.Arrays
 
 class MyApplication : Application(), ReactApplication {
     companion object {
@@ -42,6 +45,7 @@ class MyApplication : Application(), ReactApplication {
         Log.d("TestPerformance", "ar time: ${System.currentTimeMillis() - time}")
     }
 
+    private val exampleReactNativePackage = ExampleReactNativePackage()
     private val mReactNativeHost: ReactNativeHost = object : DefaultReactNativeHost(this) {
         override fun getUseDeveloperSupport(): Boolean {
             return BuildConfig.DEBUG
@@ -50,7 +54,10 @@ class MyApplication : Application(), ReactApplication {
         override fun getPackages(): List<ReactPackage> {
             // Packages that cannot be autolinked yet can be added manually here, for example:
             // packages.add(new MyReactNativePackage());
-            return PackageList(this).packages
+            return listOf(
+                MainReactPackage(),
+                exampleReactNativePackage
+            )
         }
 
         override fun getJSMainModuleName(): String {

@@ -1,5 +1,6 @@
 package com.lk.myproject.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
@@ -60,6 +61,7 @@ class MainActivity : BaseActivity(), DefaultHardwareBackBtnHandler {
         rnTest()
     }
 
+    @SuppressLint("CommitTransaction")
     private fun rnTest() {
         buttonRn.setOnClickListener {
             var rnFragment = supportFragmentManager.findFragmentByTag("rnFragment")
@@ -73,6 +75,19 @@ class MainActivity : BaseActivity(), DefaultHardwareBackBtnHandler {
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.reactNativeFragment, rnFragment, "rnFragment")
+                .commit()
+
+            var rnFragment2 = supportFragmentManager.findFragmentByTag("rnFragment2")
+            if (rnFragment2 != null) {
+                supportFragmentManager.beginTransaction().remove(rnFragment2).commit()
+            }
+            rnFragment2 = ReactFragment.Builder()
+                .setComponentName("AppToast")
+                .setLaunchOptions(getLaunchOptions("HelloWorld"))
+                .build()
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.reactNativeFragment2, rnFragment2, "rnFragment2")
                 .commit()
         }
     }
