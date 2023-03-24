@@ -2,7 +2,9 @@ package com.lk.myproject.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.lk.myproject.toast.ToastUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -28,5 +30,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         //cancel(CancellationException())
+    }
+
+    fun toast(content: String) {
+        ToastUtils.showToast(applicationContext, content, Toast.LENGTH_SHORT)
     }
 }

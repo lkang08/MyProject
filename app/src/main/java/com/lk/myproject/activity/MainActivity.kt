@@ -6,13 +6,19 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.facebook.react.ReactFragment
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.lk.myproject.R
+import com.lk.myproject.reactnative.MyReactActivity
+import com.lk.myproject.toast.ToastUtils
 import com.lk.myproject.utils.StatusBarUtils
 import com.lk.myproject.widget.NorProgressView
+import kotlinx.android.synthetic.main.activity_char.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.tv_go
 
 @Route(path = "/test/MainActivity")
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), DefaultHardwareBackBtnHandler {
 
     private var isStart: Boolean = false
     private var progress: NorProgressView? = null
@@ -22,6 +28,10 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         button.setOnClickListener {
             startActivity(Intent(this@MainActivity, SeekBarActivity::class.java))
+        }
+        tv_go.setOnClickListener {
+            startActivity(Intent(this, MyReactActivity::class.java))
+            toast("click")
         }
         circle_image_view.setOnClickListener {
             isStart = !isStart
@@ -47,6 +57,28 @@ class MainActivity : BaseActivity() {
         shadow_image_view2.setOnClickListener {
             progress?.show()
         }
+        rnTest()
+    }
+
+    private fun rnTest() {
+        buttonRn.setOnClickListener {
+            var rnFragment = supportFragmentManager.findFragmentByTag("rnFragment")
+            if (rnFragment != null) {
+                supportFragmentManager.beginTransaction().remove(rnFragment).commit()
+            }
+            rnFragment = ReactFragment.Builder()
+                .setComponentName("RNMyProject")
+                .setLaunchOptions(getLaunchOptions("test message"))
+                .build()
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.reactNativeFragment, rnFragment, "rnFragment")
+                .commit()
+        }
+    }
+
+    private fun getLaunchOptions(message: String) = Bundle().apply {
+        putString("message", message)
     }
 
     override fun onResume() {
@@ -70,5 +102,9 @@ class MainActivity : BaseActivity() {
             }
         }
         return String(c)
+    }
+
+    override fun invokeDefaultOnBackPressed() {
+        super.onBackPressed()
     }
 }

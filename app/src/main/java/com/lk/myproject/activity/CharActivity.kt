@@ -1,5 +1,6 @@
 package com.lk.myproject.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
@@ -11,6 +12,7 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.lk.myproject.R
 import com.lk.myproject.ext.dp2px
+import com.lk.myproject.reactnative.MyReactActivity
 import com.lk.myproject.widget.linechartview.ChartDataBean
 import kotlinx.android.synthetic.main.activity_char.*
 import kotlinx.android.synthetic.main.activity_overdraw_main.lineView
@@ -24,6 +26,10 @@ class CharActivity : BaseActivity() {
         //loadLineView()
         //loadCharView()
         loadCharView2()
+
+        tv_go.setOnClickListener {
+            startActivity(Intent(this, MyReactActivity::class.java))
+        }
     }
 
     private fun loadCharView2() {
